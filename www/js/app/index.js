@@ -1,5 +1,7 @@
 // define where are you
 var currentPage = "postList";
+// global post title for sharing
+var postTitle;
 
 $(document).ready(function() {
   $('#navBar').load('navBar.html');
