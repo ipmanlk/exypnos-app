@@ -22,7 +22,19 @@ body { background: #424141 !important; }
     background-color: "#C0C0C0" !important;
 }
 
-/*This is also not working. I wanna see nav-items with lighter bg color*/
-.nav-item {
-    background-color: "#C0C0C0" !important;
+.dropdown-menu {
+    background-color: #1a1a1a !important;
+}
+
+.dropdown-item {
+    color: #b3b3b3 !important;
+}
+
+.dropdown-item:hover {
+    background-color: #b3b3b3;
+    color: #1a1a1a !important;
+}
+
+.blackjumbo {
+    background-color: #333333 !important;
 }

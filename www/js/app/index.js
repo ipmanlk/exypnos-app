@@ -1,11 +1,18 @@
 // define where are you
-var currentPage = "index";
+var currentPage = "postList";
+// global post title for sharing
+var postTitle;
+// remember last post id to scroll back
+var lastPostID;
 
-$(document).ready(function() {
+// check if device is ready or not
+document.addEventListener("deviceready", onDeviceReady, false);
+
+function onDeviceReady() {
   $('#navBar').load('navBar.html');
   $("#loader").fadeIn();
   getPosts("0");
-});
+}
 
 function getPosts(id) {
   $.ajax({
@@ -35,7 +42,7 @@ function getPosts(id) {
       }
       // show posts
       $("#loadMorePostsMsg").hide();
-      $("#content").fadeIn();
+      $("#postList").fadeIn();
       $("#loader").hide();
     }
   });
@@ -47,7 +54,7 @@ function getCard(post) {
   title = post.title;
   coverImg = post.cover_img;
   shortDes = post.short_des;
-  var html = '<div class="container mt-4"><div class="card text-white bg-dark mb-3" style="max-width: 100%;"><img class="card-img-top" src="' + coverImg + '" alt="Card image cap"><div class="card-body"><h5 class="card-title sinhala"><strong>' + title + '</strong></h5><p class="card-text sinhala">' + shortDes + '</p><a href="#" class="btn btn-primary btn-block" onclick="' + "goToPost('" + id + "')"+ '">Read More</a></div></div></div></div>';
+  var html = '<div id="' + id + '" class="container mt-4"><div class="card text-white bg-dark mb-3" style="max-width: 100%;"><img class="card-img-top" src="' + coverImg + '" alt="Card image cap"><div class="card-body"><h5 class="card-title sinhala"><strong>' + title + '</strong></h5><p class="card-text sinhala">' + shortDes + '</p><a href="#" class="btn btn-primary btn-block" onclick="' + "showPost('" + id + "')"+ '">Read More</a></div></div></div></div>';
   return(html)
 }
 
@@ -58,10 +65,6 @@ function appendToPosts(html,position) {
     $("#posts").prepend(html);
   }
 
-}
-
-function goToPost(id) {
-  window.location = "./post.html?id=" + id;
 }
 
 function loadMorePosts() {
@@ -82,4 +85,38 @@ function loadMorePosts() {
 
 function getJsonPostData() {
   return(JSON.parse(localStorage.getItem('postData')));
+}
+
+function showPost(id) {
+  currentPage = "post";
+  loadPost(id);
+  $('#postList').hide();
+  $('#postContent').fadeIn();
+  lastPostID =  "#" + id;
+}
+
+function loadPost(id) {
+  var postData = getJsonPostData();
+  for (post in postData) {
+    if (postData[post].post_id == id) {
+      $("#title").html(postData[post].title);
+      postTitle = postData[post].title;
+      $("#datatime").html(postData[post].datetime);
+      $("#coverimg").attr("src", postData[post].cover_img);
+      $("#post").html(postData[post].post);
+      $("#cardimg1").attr("src", postData[post].card_img1);
+      $("#cardimg2").attr("src", postData[post].card_img2);
+      $("#author").html(postData[post].author);
+      $("#authorInfo").html(postData[post].author_info);
+    }
+  }
+  fixElementSizes();
+}
+
+function fixElementSizes() {
+  $("iframe").width('100%');
+}
+
+function sharePost() {
+  window.plugins.socialsharing.share(postTitle + " - Readmore @ ", null, null, "Exypnos Android App.");
 }
