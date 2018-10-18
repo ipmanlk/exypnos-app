@@ -17,12 +17,10 @@ body { background: #424141 !important; }
     text-align: justify;
 }
 
-/*This is not working bro. Can you make it work?*/
 .navbar-toggler {
-    background-color: "#C0C0C0" !important;
+    background-color: #14141f !important;
 }
 
-/*This is also not working. I wanna see nav-items with lighter bg color*/
-.nav-item {
-    background-color: "#C0C0C0" !important;
+.navbar-nav {
+    background-color: #14141f !important;
 }
