@@ -21,8 +21,6 @@ body { background: #424141 !important; }
     background-color: #14141f !important;
 }
 
-/*
-.nav-item {
-    background-color: "#C0C0C0" !important;
+.navbar-nav {
+    background-color: #14141f !important;
 }
-*/
