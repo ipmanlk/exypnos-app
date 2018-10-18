@@ -3,11 +3,14 @@ var currentPage = "postList";
 // global post title for sharing
 var postTitle;
 
-$(document).ready(function() {
+// check if device is ready or not
+document.addEventListener("deviceready", onDeviceReady, false);
+
+function onDeviceReady() {
   $('#navBar').load('navBar.html');
   $("#loader").fadeIn();
   getPosts("0");
-});
+}
 
 function getPosts(id) {
   $.ajax({
