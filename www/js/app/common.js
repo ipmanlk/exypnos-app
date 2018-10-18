@@ -8,8 +8,9 @@ function onOffline() {
 // override back button
 document.addEventListener("backbutton", function (e) {
   e.preventDefault();
-  if (currentPage !== "index") {
-    window.location = "index.html";
+  if (currentPage !== "postList") {
+    currentPage = "postList";
+    showPostList();
   } else {
     exitApp();
   }
@@ -17,4 +18,9 @@ document.addEventListener("backbutton", function (e) {
 
 function exitApp() {
   navigator.app.exitApp();
+}
+
+function showPostList() {
+  $('#postContent').hide();
+  $('#postList').fadeIn();
 }
