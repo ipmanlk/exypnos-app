@@ -20,3 +20,16 @@ body { background: #424141 !important; }
 .navbar-toggler {
     background-color: #14141f !important;
 }
+
+.dropdown-menu {
+    background-color: #1a1a1a !important;
+}
+
+.dropdown-item {
+    color: #b3b3b3 !important;
+}
+
+.dropdown-item:hover {
+    background-color: #b3b3b3;
+    color: #1a1a1a !important;
+}
