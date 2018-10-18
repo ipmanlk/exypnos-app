@@ -2,6 +2,8 @@
 var currentPage = "postList";
 // global post title for sharing
 var postTitle;
+// remember last post id to scroll back
+var lastPostID;
 
 // check if device is ready or not
 document.addEventListener("deviceready", onDeviceReady, false);
@@ -52,7 +54,7 @@ function getCard(post) {
   title = post.title;
   coverImg = post.cover_img;
   shortDes = post.short_des;
-  var html = '<div class="container mt-4"><div class="card text-white bg-dark mb-3" style="max-width: 100%;"><img class="card-img-top" src="' + coverImg + '" alt="Card image cap"><div class="card-body"><h5 class="card-title sinhala"><strong>' + title + '</strong></h5><p class="card-text sinhala">' + shortDes + '</p><a href="#" class="btn btn-primary btn-block" onclick="' + "showPost('" + id + "')"+ '">Read More</a></div></div></div></div>';
+  var html = '<div id="' + id + '" class="container mt-4"><div class="card text-white bg-dark mb-3" style="max-width: 100%;"><img class="card-img-top" src="' + coverImg + '" alt="Card image cap"><div class="card-body"><h5 class="card-title sinhala"><strong>' + title + '</strong></h5><p class="card-text sinhala">' + shortDes + '</p><a href="#" class="btn btn-primary btn-block" onclick="' + "showPost('" + id + "')"+ '">Read More</a></div></div></div></div>';
   return(html)
 }
 
@@ -90,6 +92,7 @@ function showPost(id) {
   loadPost(id);
   $('#postList').hide();
   $('#postContent').fadeIn();
+  lastPostID =  "#" + id;
 }
 
 function loadPost(id) {

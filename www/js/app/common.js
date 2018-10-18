@@ -23,4 +23,5 @@ function exitApp() {
 function showPostList() {
   $('#postContent').hide();
   $('#postList').fadeIn();
+  $(window).scrollTop(($(lastPostID).offset().top) - 80);
 }
