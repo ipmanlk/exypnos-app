@@ -140,3 +140,13 @@ function fixElementSizes() {
 function sharePost() {
   window.plugins.socialsharing.share(postTitle + " - Readmore @ ", null, null, "Exypnos Android App.");
 }
+
+function showPostList() {
+  $('#postContent').hide();
+  $('#postList').fadeIn();
+  $(window).scrollTop(($(lastPostID).offset().top) - 80);
+  // if in category
+  if (catFilter) {
+    $('#catMsg').fadeIn();
+  }
+}
