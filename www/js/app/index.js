@@ -104,11 +104,13 @@ function getJsonPostData() {
   return(JSON.parse(localStorage.getItem('postData')));
 }
 
-function loadCat(catID) {
+function loadCat(catID,catName) {
   $('#navBarBtn').click();
   catFilter = true;
   getPosts(0, catID);
   $('#content').fadeOut();
   $('#posts').empty();
+  $('#catMsg').show();
+  $('#catName').text(catName);
   $('#loadMorePostsBtn').fadeIn();
 }
