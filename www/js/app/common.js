@@ -8,11 +8,16 @@ function onOffline() {
 // override back button
 document.addEventListener("backbutton", function (e) {
   e.preventDefault();
-  if (currentPage !== "postList") {
-    currentPage = "postList";
-    showPostList();
-  } else {
-    exitApp();
+  switch (currentPage) {
+    case "Settings":
+      window.location = "index.html";
+      break;
+    case "About":
+      window.location = "index.html";
+      break;
+    default:
+      currentPage = "postList";
+      showPostList();
   }
 }, false);
 
