@@ -93,3 +93,8 @@ input:checked + .slider:before {
   transform: translateX(26px);
 }
 /*settings on/off buttons end*/
+
+/* css for special actions */
+.hide {
+  display: none;
+}
