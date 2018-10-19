@@ -24,6 +24,10 @@ function showPostList() {
   $('#postContent').hide();
   $('#postList').fadeIn();
   $(window).scrollTop(($(lastPostID).offset().top) - 80);
+  // if in category
+  if (catFilter) {
+    $('#catMsg').fadeIn();
+  }
 }
 
 function loadCat(catID,catName) {

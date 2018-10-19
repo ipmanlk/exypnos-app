@@ -110,6 +110,7 @@ function showPost(id) {
   currentPage = "post";
   loadPost(id);
   $('#postList').hide();
+  $('#catMsg').hide();
   $('#postContent').fadeIn();
   lastPostID =  "#" + id;
 }
