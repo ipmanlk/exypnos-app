@@ -1,40 +1,95 @@
 body { background: #424141 !important; }
 
 .navbar-header{
- margin-left:5px;
- width:100%;
+  margin-left:5px;
+  width:100%;
 }
 
 @font-face {
-    font-family: "Malithi-Web";
-    src: url(../fonts/malithi_web.ttf);
-    font-weight: normal !important;
+  font-family: "Malithi-Web";
+  src: url(../fonts/malithi_web.ttf);
+  font-weight: normal !important;
 
-  }
+}
 
 .sinhala {
-    font-family: "Malithi-Web" !important;
-    text-align: justify;
+  font-family: "Malithi-Web" !important;
+  text-align: justify;
 }
 
-/*This is not working bro. Can you make it work?*/
-.navbar-toggler {
-    background-color: "#C0C0C0" !important;
+.navbar-toggler, .dropdown-menu {
+  background-color: #1a1a1a !important;
 }
 
-.dropdown-menu {
-    background-color: #1a1a1a !important;
+/*removes that ugly square around toggler*/
+.navbar-toggler:focus {
+  outline: none !important;
 }
 
 .dropdown-item {
-    color: #b3b3b3 !important;
+  color: #b3b3b3 !important;
 }
 
 .dropdown-item:hover {
-    background-color: #b3b3b3;
-    color: #1a1a1a !important;
+  background-color: #b3b3b3;
+  color: #1a1a1a !important;
 }
 
-.blackjumbo {
-    background-color: #333333 !important;
+.blackjumbo { /*Settings page jumbotrons*/
+  background-color: #333333 !important;
 }
+
+/*Settings on off buttons*/
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+/*settings on/off buttons end*/
