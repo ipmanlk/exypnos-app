@@ -34,7 +34,7 @@
     </div>
   </div>
 
-  <div id="content" style="display:none">
+  <div id="postList" style="display:none">
     <div id="posts">
       <!-- post load  here  -->
     </div>
@@ -49,8 +49,45 @@
     </div>
   </div>
 
+  <div id="postContent" class="container" style="display:none;">
+    <button onclick="showPostList();" class="btn btn-warning mt-3"><i class="fa fa-chevron-left"></i> Back</button>
+
+    <button onclick="sharePost();" class="btn btn-primary mt-3 float-right"><i class="fa fa-share"></i> Share</button>
+
+    <div class="jumbotron mt-3 sinhala">
+      <h3>
+        <strong>
+          <span id="title"> </span>
+        </strong>
+      </h3>
+      <p>
+        <strong>
+          <span id="datatime"> </span>
+        </strong>
+      </p>
+
+      <img id="coverimg" src="imgs/sample_post_cover.jpg" class="img-fluid">
+
+      <div class="mt-3">
+        <p id="post">
+          <!--  post load here -->
+        </p>
+      </div>
+      <div class="mt-3">
+        <img id="cardimg1" src="imgs/si1.jpg" class="img-fluid mb-3">
+        <img id="cardimg2" src="imgs/si2.jpg" class="img-fluid">
+      </div>
+      <hr>
+      <div class="mt-4">
+        <h5>Article by <span id="author"> </span>.</h5>
+        <!--Check below change specially-->
+        <kbd id="authorInfo"> </kbd>
+      </div>
+    </div>
+  </div>
+
   <!-- scripts -->
-  <script src="./js/app/common.js" charset="utf-8"></script>
   <script src="./js/app/index.js" charset="utf-8"></script>
+  <script src="./js/app/common.js" charset="utf-8"></script>
 </body>
 </html>
