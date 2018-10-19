@@ -1,16 +1,27 @@
 // define where are you
 var currentPage = "index";
 
+// browse by category or not
+var catFilter = false;
+
 $(document).ready(function() {
   $('#navBar').load('navBar.html');
   $("#loader").fadeIn();
   getPosts("0");
+  getCats();
 });
 
-function getPosts(id) {
+function getPosts(id,catID='') {
+  var url;
+  // check if categories are set
+  if (catFilter) {
+    url = `https://exypnos.navinda.xyz/api/cats.php?id=${id}&cat_id=${catID}`;
+  } else {
+    url = `https://exypnos.navinda.xyz/api/exy.php?id=${id}`;
+  }
   $.ajax({
     type: 'get',
-    url: 'https://exypnos.navinda.xyz/api/exy.php?id=' + id,
+    url: url,
     dataType: 'json',
     timeout: 60000, //60s
     success: function (postData) {
@@ -22,16 +33,21 @@ function getPosts(id) {
         localStorage.setItem('postData', JSON.stringify(postData));
 
       } else {
-        // request for more posts
-        var oldPostData = getJsonPostData();
-        var oldPostDataLength = Object.keys(getJsonPostData()).length;
-        for (post in postData) {
-          // append new posts to oldPostData object
-          oldPostData[oldPostDataLength] = postData[post];
-          oldPostDataLength++;
+        if (postData[0] == null) {
+          // if there are no more post to load
+          $('#loadMorePostsBtn').fadeOut();
+        } else {
+          // request for more posts
+          var oldPostData = getJsonPostData();
+          var oldPostDataLength = Object.keys(getJsonPostData()).length;
+          for (post in postData) {
+            // append new posts to oldPostData object
+            oldPostData[oldPostDataLength] = postData[post];
+            oldPostDataLength++;
+          }
+          // save updated object
+          localStorage.setItem('postData', JSON.stringify(oldPostData));
         }
-        // save updated object
-        localStorage.setItem('postData', JSON.stringify(oldPostData));
       }
       // show posts
       $("#loadMorePostsMsg").hide();
@@ -65,21 +81,34 @@ function goToPost(id) {
 }
 
 function loadMorePosts() {
+
+  $("#loadMorePostsMsg").fadeIn();
+
   var postData = getJsonPostData();
   // get object length & -1 to find last item
   var oldestPostId = Object.keys(postData).length -1;
   // get the post id of last item
   oldestPostId = postData[oldestPostId].post_id;
   // if it's not 1, request for more posts
-  if (oldestPostId !== 1) {
-    $('#loadMorePostsMsg').fadeIn();
-    getPosts(oldestPostId);
-    $('#loadMorePostsMsg').fadeOut();
+
+  // if category filter is enabled
+  if (catFilter) {
+    var selectedCat = postData[0].cat_id;
+    getPosts(oldestPostId, selectedCat);
   } else {
-    $('#loadMorePostsBtn').fadeOut();
+    getPosts(oldestPostId);
   }
 }
 
 function getJsonPostData() {
   return(JSON.parse(localStorage.getItem('postData')));
+}
+
+function loadCat(catID) {
+  $('#navBarBtn').click();
+  catFilter = true;
+  getPosts(0, catID);
+  $('#content').fadeOut();
+  $('#posts').empty();
+  $('#loadMorePostsBtn').fadeIn();
 }
