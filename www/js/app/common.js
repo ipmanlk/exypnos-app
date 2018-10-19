@@ -15,9 +15,15 @@ document.addEventListener("backbutton", function (e) {
     case "About":
       window.location = "index.html";
       break;
-    default:
+    case "Post":
       currentPage = "postList";
       showPostList();
+      break;
+    case "Category":
+      window.location = "index.html";
+      break;
+    default:
+      exitApp();
   }
 }, false);
 
@@ -44,6 +50,7 @@ function loadCat(catID,catName) {
   $('#catMsg').show();
   $('#catName').text(catName);
   $('#loadMorePostsBtn').fadeIn();
+  currentPage = "Category";
 }
 
 // get categories

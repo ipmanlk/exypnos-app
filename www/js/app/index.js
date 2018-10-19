@@ -107,7 +107,7 @@ function getJsonPostData() {
 }
 
 function showPost(id) {
-  currentPage = "post";
+  currentPage = "Post";
   loadPost(id);
   $('#postList').hide();
   $('#catMsg').hide();
