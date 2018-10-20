@@ -26,16 +26,34 @@
     <div class="jumbotron blackjumbo">
       <h5 class="text-white">Appearance Settings</h5> <hr />
       <div class="container mt-3">
-        <span class="text-white">Use in-app unicode font</span>
-        <div class="btn-group float-right">
-          <label class="switch">
-            <input id="settingSystemFont" type="checkbox">
-            <span class="slider round"></span>
-          </label>
-        </div> <hr />
+        <div class="row">
+          <div class="col-9">
+            <span class="text-white">Use in-app unicode font</span>
+          </div>
+          <div class="col-3">
+            <div class="btn-group float-right">
+              <label class="switch">
+                <input id="settingSystemFont" type="checkbox">
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-9">
+            <span class="text-white">Justify text</span>
+          </div>
+          <div class="col-3">
+            <div class="btn-group float-right">
+              <label class="switch">
+                <input id="settingJustifyText" type="checkbox">
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-
     <div class="jumbotron blackjumbo">
       <h5 class="text-white">Notification Settings</h5> <hr />
       <div class="container mt-3">
@@ -58,24 +76,53 @@
         </div> <hr />
       </div>
     </div>
-
   </div>
-  <script type="text/javascript">
-  $(document).ready(function() {
-    $('#navBar').load('navBar.html');
-  });
-  var currentPage = "Settings";
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#navBar').load('navBar.html');
+  updateSettingsUI();
 
-  // $(document).ready(function() {
-  //     $('#setting').change(function() {
-  //         if($(this).is(":checked")) {
-  //           alert("FF");
-  //         }
-  //     });
-  // });
-  </script>
-  <script src="./js/app/category.js" charset="utf-8"></script>
-  <script src="./js/app/common.js" charset="utf-8"></script>
-  <script src="./js/app/custom.js" charset="utf-8"></script>
+  // handle settings
+  var settings = JSON.parse(localStorage.getItem('settings'));
+
+  $('#settingSystemFont').change(function() {
+    if($(this).is(":checked")) {
+      settings['useCustomFont'] = true;
+    } else {
+      settings['useCustomFont'] = false;
+    }
+    localStorage.setItem('settings', JSON.stringify(settings));
+    updateSettingsUI();
+  });
+
+  $('#settingNotification').change(function() {
+    if($(this).is(":checked")) {
+      settings['notification'] = true;
+    } else {
+      settings['notification'] = false;
+    }
+    localStorage.setItem('settings', JSON.stringify(settings));
+    updateSettingsUI();
+  });
+
+  $('#settingJustifyText').change(function() {
+    if($(this).is(":checked")) {
+      settings['justifyText'] = true;
+    } else {
+      settings['justifyText'] = false;
+    }
+    localStorage.setItem('settings', JSON.stringify(settings));
+    updateSettingsUI();
+  });
+});
+
+var currentPage = "Settings";
+
+</script>
+<script src="./js/app/category.js" charset="utf-8"></script>
+<script src="./js/app/common.js" charset="utf-8"></script>
+<script src="./js/app/custom.js" charset="utf-8"></script>
+<script src="./js/app/settings.js" charset="utf-8"></script>
 </body>
 </html>
