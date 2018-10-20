@@ -1,8 +1,20 @@
-// element id's & their related setting
-var elementSettings = {
+// element id's in settings page & their related setting (for checkboxes)
+var elementSetting = {
   "settingSystemFont":"useCustomFont",
   "settingNotification":"notification",
   "settingJustifyText":"justifyText"
+}
+
+// settings with effected selectors & css classes
+var settingInfo = {
+  "useCustomFont":{
+    "selectors":["#postBody",".card-title",".card-text"],
+    "classes":["sinhala"]
+  },
+  "justifyText":{
+    "selectors":["#postBody",".card-title",".card-text"],
+    "classes":["justify"]
+  }
 }
 
 function checkSettings() {
@@ -24,32 +36,37 @@ function setDefaultSettings() {
 
 function applySettings() {
   var settings = JSON.parse(localStorage.getItem('settings'));
-  if (!settings['useCustomFont']) {
-    $('#postBody').removeClass('sinhala');
-    $('.card-title').removeClass('sinhala');
-    $('.card-text').removeClass('sinhala');
 
+  if (!settings['useCustomFont']) {
+    classRemover(settingInfo['useCustomFont']);
   }
 
   if (!settings['justifyText']) {
-    $('#postBody').removeClass('justify');
-    $('.card-title').removeClass('justify');
-    $('.card-text').removeClass('justify');
+    classRemover(settingInfo['justifyText']);
+  }
+}
+
+function classRemover(obj) {
+  var selectors = obj['selectors'];
+  var classes = obj['classes'];
+  for (s in selectors) {
+    for (c in classes) {
+      $(selectors[s]).removeClass(classes[c]);
+    }
   }
 }
 
 function updateSettingsUI() {
   var settings = JSON.parse(localStorage.getItem('settings'));
 
-  for (elementID in elementSettings) {
+  for (elementID in elementSetting) {
     // get setting releated to element id
-    var setting = settings[(elementSettings[elementID])];
+    var setting = settings[(elementSetting[elementID])];
     // if it's true
     if (setting) {
       $(('#' + elementID)).prop('checked', true);
     }
   }
-
 }
 
 function onChangeHandler(element) {
@@ -66,7 +83,7 @@ function onChangeHandler(element) {
 
 function handleSettings(elementID, value) {
   var settings = JSON.parse(localStorage.getItem('settings'));
-  var setting = elementSettings[elementID];
+  var setting = elementSetting[elementID];
   settings[setting] = value;
   localStorage.setItem('settings', JSON.stringify(settings));
   updateSettingsUI();
