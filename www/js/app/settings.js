@@ -45,3 +45,28 @@ function updateSettingsUI() {
   }
 
 }
+
+function onChangeHandler(element) {
+  var elementID = $(element).attr('id');
+  var value = false;
+
+  elementSettings = {
+    "settingSystemFont":"useCustomFont",
+    "settingNotification":"notification",
+    "settingJustifyText":"justifyText"
+  }
+
+  if($(element).is(":checked")) {
+    value = true;
+  }
+
+  // call handle setting
+  handleSettings(elementSettings[elementID], value);
+}
+
+function handleSettings(setting, value) {
+  var settings = JSON.parse(localStorage.getItem('settings'));
+  settings[setting] = value;
+  localStorage.setItem('settings', JSON.stringify(settings));
+  updateSettingsUI();
+}
