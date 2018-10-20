@@ -23,6 +23,7 @@
   </div>
 
   <div class="container mt-3">
+    
     <div class="jumbotron blackjumbo">
       <h5 class="text-white">Appearance Settings</h5> <hr />
       <div class="container mt-3">
@@ -54,70 +55,85 @@
         </div>
       </div>
     </div>
+
     <div class="jumbotron blackjumbo">
       <h5 class="text-white">Notification Settings</h5> <hr />
       <div class="container mt-3">
-        <span class="text-white">Notifications on/off</span>
-        <div class="btn-group float-right">
-          <label class="switch">
-            <input id="settingNotification" type="checkbox">
-            <span class="slider round"></span>
-          </label>
-        </div> <hr />
+        <div class="row">
+          <div class="col-9">
+            <span class="text-white">Notifications on/off</span>
+          </div>
+          <div class="col-3">
+            <div class="btn-group float-right">
+              <label class="switch">
+                <input id="settingNotification" type="checkbox">
+                <span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="jumbotron blackjumbo">
       <h5 class="text-white">Other Settings</h5> <hr />
       <div class="container mt-3">
-        <span class="text-white">Clear cache</span>
-        <div class="btn-group float-right">
-          <button type="button" class="btn btn-danger btn-sm">Clear</button>
-        </div> <hr />
+
+        <div class="row">
+          <div class="col-9">
+            <<span class="text-white">Clear cache</span>
+          </div>
+          <div class="col-3">
+            <div class="btn-group float-right">
+              <button type="button" class="btn btn-danger btn-sm">Clear</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+
   </div>
-</div>
-<script type="text/javascript">
-$(document).ready(function() {
-  $('#navBar').load('navBar.html');
-  updateSettingsUI();
 
-  // handle settings
-  var settings = JSON.parse(localStorage.getItem('settings'));
-
-  $('#settingSystemFont').change(function() {
-    if($(this).is(":checked")) {
-      settings['useCustomFont'] = true;
-    } else {
-      settings['useCustomFont'] = false;
-    }
-    localStorage.setItem('settings', JSON.stringify(settings));
+  <script type="text/javascript">
+  $(document).ready(function() {
+    $('#navBar').load('navBar.html');
     updateSettingsUI();
+
+    // handle settings
+    var settings = JSON.parse(localStorage.getItem('settings'));
+
+    $('#settingSystemFont').change(function() {
+      if($(this).is(":checked")) {
+        settings['useCustomFont'] = true;
+      } else {
+        settings['useCustomFont'] = false;
+      }
+      localStorage.setItem('settings', JSON.stringify(settings));
+      updateSettingsUI();
+    });
+
+    $('#settingNotification').change(function() {
+      if($(this).is(":checked")) {
+        settings['notification'] = true;
+      } else {
+        settings['notification'] = false;
+      }
+      localStorage.setItem('settings', JSON.stringify(settings));
+      updateSettingsUI();
+    });
+
+    $('#settingJustifyText').change(function() {
+      if($(this).is(":checked")) {
+        settings['justifyText'] = true;
+      } else {
+        settings['justifyText'] = false;
+      }
+      localStorage.setItem('settings', JSON.stringify(settings));
+      updateSettingsUI();
+    });
   });
 
-  $('#settingNotification').change(function() {
-    if($(this).is(":checked")) {
-      settings['notification'] = true;
-    } else {
-      settings['notification'] = false;
-    }
-    localStorage.setItem('settings', JSON.stringify(settings));
-    updateSettingsUI();
-  });
-
-  $('#settingJustifyText').change(function() {
-    if($(this).is(":checked")) {
-      settings['justifyText'] = true;
-    } else {
-      settings['justifyText'] = false;
-    }
-    localStorage.setItem('settings', JSON.stringify(settings));
-    updateSettingsUI();
-  });
-});
-
-var currentPage = "Settings";
+  var currentPage = "Settings";
 
 </script>
 <script src="./js/app/category.js" charset="utf-8"></script>
