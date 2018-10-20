@@ -17,6 +17,7 @@ function onDeviceReady() {
   getPosts("0");
   getCats();
   checkSettings();
+  disableCopy();
 }
 
 function getPosts(id,catID) {
