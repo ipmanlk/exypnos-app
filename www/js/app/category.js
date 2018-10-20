@@ -20,6 +20,8 @@ function getCats() {
     success: function (catsData) {
       for (i in catsData) {
         $('#cats').append('<a onclick="loadCat(' + "'" + catsData[i].cat_id + "'" + ",'" + catsData[i].name + "'" + ');" class="dropdown-item" href="#">&nbsp;<i class="fa fa-angle-double-right"></i>&nbsp;' + catsData[i].name + '</a>');
+        // loat to category object
+        cats[catsData[i].cat_id] = catsData[i].name;
       }
     }
   });

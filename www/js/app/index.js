@@ -11,11 +11,14 @@ var catFilter = false;
 // check if device is ready or not
 document.addEventListener("deviceready", onDeviceReady, false);
 
+// store categories & ids
+var cats = {};
+
 function onDeviceReady() {
   $('#navBar').load('navBar.html');
   $("#loader").fadeIn();
-  getPosts("0");
   getCats();
+  getPosts("0");
   checkSettings();
   disableCopy();
 }
@@ -70,12 +73,15 @@ function getPosts(id,catID) {
 }
 
 function getCard(post) {
-  var id,title,coverImg,shortDes,link;
+  var id,title,coverImg,shortDes,link, cat_id, datetime;
   id = post.post_id;
   title = post.title;
   coverImg = post.cover_img;
   shortDes = post.short_des;
-  var html = '<div id="' + id + '" class="container mt-4"><div class="card text-white bg-dark mb-3" style="max-width: 100%;"><img class="card-img-top" src="' + coverImg + '" alt="Card image cap"><div class="card-body"><h5 class="card-title sinhala justify"><strong>' + title + '</strong></h5><p class="card-text sinhala justify">' + shortDes + '</p><a href="#" class="btn btn-primary btn-block" onclick="' + "showPost('" + id + "')"+ '">Read More</a></div></div></div></div>';
+  cat_id = post.cat_id;
+  datetime = post.datetime;
+  author = post.author;
+  var html = '<div id="' + id + '" class="container mt-4"><div class="card text-white bg-dark mb-3" style="max-width: 100%;"><span class="badge badge-dark" style="border-radius: 3px 3px 0px 0px;">' + cats[cat_id] + '</span><img class="card-img-top" style="border-radius:0px 0px" src="' + coverImg + '" alt="Card image cap"><span class="badge badge-secondary" style="border-radius: 0px;">' + "By " + author + " @ " + datetime + '</span><div class="card-body"><h5 class="card-title sinhala justify"><strong>' + title + '</strong></h5><p class="card-text sinhala justify">' + shortDes + '</p><a href="#" class="btn btn-primary btn-block" onclick="' + "showPost('" + id + "')"+ '">Read More</a></div></div></div></div>';
   return(html)
 }
 
