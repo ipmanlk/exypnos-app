@@ -1,3 +1,10 @@
+// element id's & their related setting
+var elementSettings = {
+  "settingSystemFont":"useCustomFont",
+  "settingNotification":"notification",
+  "settingJustifyText":"justifyText"
+}
+
 function checkSettings() {
   if (localStorage.getItem('settings') == null) {
     setDefaultSettings();
@@ -33,15 +40,14 @@ function applySettings() {
 
 function updateSettingsUI() {
   var settings = JSON.parse(localStorage.getItem('settings'));
-  var elementIDs = ['#settingSystemFont', '#settingNotification', '#settingJustifyText'];
-  var count = 0;
 
-  // update element props
-  for (item in settings) {
-    if (settings[item]) {
-      $(elementIDs[count]).prop('checked', true);
+  for (elementID in elementSettings) {
+    // get setting releated to element id
+    var setting = settings[(elementSettings[elementID])];
+    // if it's true
+    if (setting) {
+      $(('#' + elementID)).prop('checked', true);
     }
-    count++;
   }
 
 }
@@ -50,22 +56,17 @@ function onChangeHandler(element) {
   var elementID = $(element).attr('id');
   var value = false;
 
-  elementSettings = {
-    "settingSystemFont":"useCustomFont",
-    "settingNotification":"notification",
-    "settingJustifyText":"justifyText"
-  }
-
   if($(element).is(":checked")) {
     value = true;
   }
 
   // call handle setting
-  handleSettings(elementSettings[elementID], value);
+  handleSettings(elementID, value);
 }
 
-function handleSettings(setting, value) {
+function handleSettings(elementID, value) {
   var settings = JSON.parse(localStorage.getItem('settings'));
+  var setting = elementSettings[elementID];
   settings[setting] = value;
   localStorage.setItem('settings', JSON.stringify(settings));
   updateSettingsUI();
