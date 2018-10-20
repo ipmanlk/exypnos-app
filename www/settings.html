@@ -34,7 +34,7 @@
           <div class="col-3">
             <div class="btn-group float-right">
               <label class="switch">
-                <input id="settingSystemFont" type="checkbox" onchange="onChangeHandler(this);">
+                <input id="settingSystemFont" type="checkbox">
                 <span class="slider round"></span>
               </label>
             </div>
@@ -47,7 +47,7 @@
           <div class="col-3">
             <div class="btn-group float-right">
               <label class="switch">
-                <input id="settingJustifyText" type="checkbox" onchange="onChangeHandler(this);">
+                <input id="settingJustifyText" type="checkbox">
                 <span class="slider round"></span>
               </label>
             </div>
@@ -66,7 +66,7 @@
           <div class="col-3">
             <div class="btn-group float-right">
               <label class="switch">
-                <input id="settingNotification" type="checkbox" onchange="onChangeHandler(this);">
+                <input id="settingNotification" type="checkbox">
                 <span class="slider round"></span>
               </label>
             </div>
@@ -98,6 +98,11 @@
   $(document).ready(function() {
     $('#navBar').load('navBar.html');
     updateSettingsUI();
+
+    // event listener for checkboxes
+    $('input[type="checkbox"]').change(function() {
+      onChangeHandler(this);
+    });
   });
 
   var currentPage = "Settings";
