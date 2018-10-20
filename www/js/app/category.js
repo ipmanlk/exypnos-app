@@ -14,7 +14,7 @@ function loadCat(catID,catName) {
 function getCats() {
   $.ajax({
     type: 'get',
-    url: 'https://exypnos.navinda.xyz/api/getCats.php',
+    url: 'https://exypnos.navinda.xyz/api/s.php?s=4a2204811369&sp=0',
     dataType: 'json',
     timeout: 60000, //60s
     success: function (catsData) {
