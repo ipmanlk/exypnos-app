@@ -16,6 +16,7 @@ function onDeviceReady() {
   $("#loader").fadeIn();
   getPosts("0");
   getCats();
+  checkSettings();
 }
 
 function getPosts(id,catID) {
@@ -60,6 +61,9 @@ function getPosts(id,catID) {
       $("#loadMorePostsMsg").hide();
       $("#postList").fadeIn();
       $("#loader").hide();
+
+      // apply settings to new posts
+      applySettings();
     }
   });
 }
@@ -70,7 +74,7 @@ function getCard(post) {
   title = post.title;
   coverImg = post.cover_img;
   shortDes = post.short_des;
-  var html = '<div id="' + id + '" class="container mt-4"><div class="card text-white bg-dark mb-3" style="max-width: 100%;"><img class="card-img-top" src="' + coverImg + '" alt="Card image cap"><div class="card-body"><h5 class="card-title sinhala"><strong>' + title + '</strong></h5><p class="card-text sinhala">' + shortDes + '</p><a href="#" class="btn btn-primary btn-block" onclick="' + "showPost('" + id + "')"+ '">Read More</a></div></div></div></div>';
+  var html = '<div id="' + id + '" class="container mt-4"><div class="card text-white bg-dark mb-3" style="max-width: 100%;"><img class="card-img-top" src="' + coverImg + '" alt="Card image cap"><div class="card-body"><h5 class="card-title sinhala justify"><strong>' + title + '</strong></h5><p class="card-text sinhala justify">' + shortDes + '</p><a href="#" class="btn btn-primary btn-block" onclick="' + "showPost('" + id + "')"+ '">Read More</a></div></div></div></div>';
   return(html)
 }
 

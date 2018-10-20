@@ -29,7 +29,7 @@
         <span class="text-white">Use in-app unicode font</span>
         <div class="btn-group float-right">
           <label class="switch">
-            <input type="checkbox" checked>
+            <input id="settingSystemFont" type="checkbox">
             <span class="slider round"></span>
           </label>
         </div> <hr />
@@ -42,7 +42,7 @@
         <span class="text-white">Notifications on/off</span>
         <div class="btn-group float-right">
           <label class="switch">
-            <input type="checkbox">
+            <input id="settingNotification" type="checkbox">
             <span class="slider round"></span>
           </label>
         </div> <hr />
@@ -65,6 +65,14 @@
     $('#navBar').load('navBar.html');
   });
   var currentPage = "Settings";
+
+  // $(document).ready(function() {
+  //     $('#setting').change(function() {
+  //         if($(this).is(":checked")) {
+  //           alert("FF");
+  //         }
+  //     });
+  // });
   </script>
   <script src="./js/app/category.js" charset="utf-8"></script>
   <script src="./js/app/common.js" charset="utf-8"></script>

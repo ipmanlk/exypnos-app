@@ -14,7 +14,10 @@ body { background: #424141 !important; }
 
 .sinhala {
   font-family: "Malithi-Web" !important;
-  text-align: justify;
+}
+
+.justify {
+  text-align: justify !important;
 }
 
 .navbar-toggler, .dropdown-menu {
