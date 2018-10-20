@@ -18,7 +18,7 @@ function onDeviceReady() {
   getCats();
 }
 
-function getPosts(id,catID='') {
+function getPosts(id,catID) {
   var url;
   // check if categories are set
   if (catFilter) {
