@@ -22,9 +22,9 @@ function getPosts(id,catID='') {
   var url;
   // check if categories are set
   if (catFilter) {
-    url = `https://exypnos.navinda.xyz/api/cats.php?id=${id}&cat_id=${catID}`;
+    url = 'https://exypnos.navinda.xyz/api/cats.php?id=' + id + '&cat_id=' + catID;
   } else {
-    url = `https://exypnos.navinda.xyz/api/exy.php?id=${id}`;
+    url = 'https://exypnos.navinda.xyz/api/exy.php?id=' + id;
   }
   $.ajax({
     type: 'get',
