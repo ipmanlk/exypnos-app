@@ -109,3 +109,13 @@ input:checked + .slider:before {
 .hide {
   display: none;
 }
+
+/* category list */
+.list-group-mine .list-group-item {
+  background-color: #3a3a3a;
+  border-color: #ffffff;
+}
+
+.list-group-mine .list-group-item:hover {
+  background-color: #636363;
+}
