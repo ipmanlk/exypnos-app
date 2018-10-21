@@ -40,7 +40,7 @@ function getPosts(id,catID) {
     success: function (postData) {
       for (post in postData) {
         // load to posts object
-        posts[(postData[post].post_id)] = postData[post];
+        posts[(parseInt(postData[post].post_id))] = postData[post];
         appendToPosts(getCard(postData[post]), "end");
       }
 
@@ -88,15 +88,13 @@ function appendToPosts(html,position) {
 }
 
 function loadMorePosts() {
-
   $("#loadMorePostsMsg").fadeIn();
 
   // get keys from posts object
   var keys = Object.keys(posts);
-  // sort keys
-  keys.sort();
+
   // get the post id of last item
-  var oldestPostId = posts[(keys[0])].post_id;
+  var oldestPostId = keys[0];
 
   // if category filter is enabled
   if (catFilter) {
@@ -149,6 +147,7 @@ function showPostList() {
 }
 
 function loadCat(catID,catName) {
+  posts = {};
   $('#navBarBtn').click();
   catFilter = true;
   getPosts(0, catID);
