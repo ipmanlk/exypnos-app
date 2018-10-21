@@ -101,10 +101,6 @@ function loadMorePosts() {
   }
 }
 
-function getJsonPostData() {
-  return(JSON.parse(localStorage.getItem('postData')));
-}
-
 function showPost(id) {
   currentPage = "Post";
   loadPost(id);
