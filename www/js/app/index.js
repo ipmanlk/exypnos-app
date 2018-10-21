@@ -48,7 +48,7 @@ function getPosts(id,catID) {
         // if there are no more post to load
         $('#loadMorePostsBtn').fadeOut();
 
-        if (catFilter) {
+        if (catFilter && (id == 0)) {
           $('#noPostMsg').fadeIn();
         }
       }
