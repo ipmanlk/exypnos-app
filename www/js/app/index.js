@@ -108,8 +108,7 @@ function loadMorePosts() {
 function showPost(id) {
   currentPage = "Post";
   loadPost(id);
-  $('#postList').hide();
-  $('#catMsg').hide();
+  elementsHide(['postList','catMsg']);
   $('#postContent').fadeIn();
   lastPostID =  "#" + id;
 }
@@ -148,8 +147,7 @@ function showPostList() {
 
 function showCats() {
   $('#navBarBtn').click();
-  $('#postContent').hide();
-  $('#postList').hide();
+  elementsHide(['postContent','postList']);
   $('#catContent').fadeIn();
 }
 
@@ -157,9 +155,7 @@ function loadCat(catID,catName) {
   posts = {};
   catFilter = true;
   getPosts(0, catID);
-  $('#postContent').hide();
-  $('#noPostMsg').hide();
-  $('#catContent').hide();
+  elementsHide(['postContent','noPostMsg','catContent']);
   $('#posts').empty();
   $('#catMsg').fadeIn();
   $('#catName').text(catName);
@@ -179,7 +175,7 @@ function getCats() {
 
         $('#catList').append('<a class="list-group-item active text-white" onclick="' + "loadCat('" + catsData[i].cat_id + "','" + catsData[i].name + "');" + '">' + catsData[i].name + '<span class="badge badge-primary float-right mt-2">' + catsData[i].post_num + '</span></a>');
 
-        // loat to category object
+        // load to category object
         cats[catsData[i].cat_id] = catsData[i].name;
       }
 
@@ -187,4 +183,11 @@ function getCats() {
       getPosts("0");
     }
   });
+}
+
+// functions for useful actions
+function elementsHide(elementIDs) {
+  for (s in elementIDs) {
+    $(('#' + elementIDs[s])).hide();
+  }
 }
