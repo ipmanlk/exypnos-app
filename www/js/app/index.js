@@ -25,6 +25,7 @@ function onDeviceReady() {
 
 function getPosts(id,catID) {
   var url;
+
   // check if categories are set
   if (catFilter) {
     url = 'https://exypnos.navinda.xyz/api/s.php?s=4a2204811369&id=' + id + '&cat_id=' + catID;
@@ -46,6 +47,10 @@ function getPosts(id,catID) {
       if (postData[0] == null) {
         // if there are no more post to load
         $('#loadMorePostsBtn').fadeOut();
+
+        if (catFilter) {
+          $('#noPostMsg').fadeIn();
+        }
       }
 
 
@@ -86,15 +91,16 @@ function loadMorePosts() {
 
   $("#loadMorePostsMsg").fadeIn();
 
-  var postData = getJsonPostData();
-  // get object length & -1 to find last item
-  var oldestPostId = Object.keys(postData).length -1;
+  // get keys from posts object
+  var keys = Object.keys(posts);
+  // sort keys
+  keys.sort();
   // get the post id of last item
-  oldestPostId = postData[oldestPostId].post_id;
+  var oldestPostId = posts[(keys[0])].post_id;
 
   // if category filter is enabled
   if (catFilter) {
-    var selectedCat = postData[0].cat_id;
+    var selectedCat = posts[oldestPostId].cat_id;
     getPosts(oldestPostId, selectedCat);
   } else {
     getPosts(oldestPostId);
@@ -147,6 +153,7 @@ function loadCat(catID,catName) {
   catFilter = true;
   getPosts(0, catID);
   $('#postContent').hide();
+  $('#noPostMsg').hide();
   $('#posts').empty();
   $('#catMsg').fadeIn();
   $('#catName').text(catName);
