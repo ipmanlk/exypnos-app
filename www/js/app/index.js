@@ -11,14 +11,14 @@ var catFilter = false;
 // check if device is ready or not
 document.addEventListener("deviceready", onDeviceReady, false);
 
-// store categories & ids
+// store categories & posts
 var cats = {};
+var posts = {};
 
 function onDeviceReady() {
   $('#navBar').load('navBar.html');
   $("#loader").fadeIn();
   getCats();
-  getPosts("0");
   checkSettings();
   disableCopy();
 }
@@ -38,29 +38,17 @@ function getPosts(id,catID) {
     timeout: 60000, //60s
     success: function (postData) {
       for (post in postData) {
+        // load to posts object
+        posts[(postData[post].post_id)] = postData[post];
         appendToPosts(getCard(postData[post]), "end");
       }
-      // first time requesting posts
-      if (id == 0) {
-        localStorage.setItem('postData', JSON.stringify(postData));
 
-      } else {
-        if (postData[0] == null) {
-          // if there are no more post to load
-          $('#loadMorePostsBtn').fadeOut();
-        } else {
-          // request for more posts
-          var oldPostData = getJsonPostData();
-          var oldPostDataLength = Object.keys(getJsonPostData()).length;
-          for (post in postData) {
-            // append new posts to oldPostData object
-            oldPostData[oldPostDataLength] = postData[post];
-            oldPostDataLength++;
-          }
-          // save updated object
-          localStorage.setItem('postData', JSON.stringify(oldPostData));
-        }
+      if (postData[0] == null) {
+        // if there are no more post to load
+        $('#loadMorePostsBtn').fadeOut();
       }
+
+
       // show posts
       $("#loadMorePostsMsg").hide();
       $("#postList").fadeIn();
@@ -127,20 +115,16 @@ function showPost(id) {
 }
 
 function loadPost(id) {
-  var postData = getJsonPostData();
-  for (post in postData) {
-    if (postData[post].post_id == id) {
-      $("#title").html(postData[post].title);
-      postTitle = postData[post].title;
-      $("#datatime").html(postData[post].datetime);
-      $("#coverimg").attr("src", postData[post].cover_img);
-      $("#post").html(postData[post].post);
-      $("#cardimg1").attr("src", postData[post].card_img1);
-      $("#cardimg2").attr("src", postData[post].card_img2);
-      $("#author").html(postData[post].author);
-      $("#authorInfo").html(postData[post].author_info);
-    }
-  }
+  var postData = posts[id];
+  $("#title").html(postData.title);
+  postTitle = postData.title;
+  $("#datatime").html(postData.datetime);
+  $("#coverimg").attr("src", postData.cover_img);
+  $("#post").html(postData.post);
+  $("#cardimg1").attr("src", postData.card_img1);
+  $("#cardimg2").attr("src", postData.card_img2);
+  $("#author").html(postData.author);
+  $("#authorInfo").html(postData.author_info);
   fixElementSizes();
 }
 
@@ -160,4 +144,36 @@ function showPostList() {
   if (catFilter) {
     $('#catMsg').fadeIn();
   }
+}
+
+function loadCat(catID,catName) {
+  $('#navBarBtn').click();
+  catFilter = true;
+  getPosts(0, catID);
+  $('#postContent').hide();
+  $('#posts').empty();
+  $('#catMsg').fadeIn();
+  $('#catName').text(catName);
+  $('#loadMorePostsBtn').fadeIn();
+  currentPage = "Category";
+}
+
+// get categories
+function getCats() {
+  $.ajax({
+    type: 'get',
+    url: 'https://exypnos.navinda.xyz/api/s.php?s=4a2204811369&sp=0',
+    dataType: 'json',
+    timeout: 60000, //60s
+    success: function (catsData) {
+      for (i in catsData) {
+        $('#cats').append('<a onclick="loadCat(' + "'" + catsData[i].cat_id + "'" + ",'" + catsData[i].name + "'" + ');" class="dropdown-item" href="#">&nbsp;<i class="fa fa-angle-double-right"></i>&nbsp;' + catsData[i].name + '</a>');
+        // loat to category object
+        cats[catsData[i].cat_id] = catsData[i].name;
+      }
+
+      // load Posts
+      getPosts("0");
+    }
+  });
 }
