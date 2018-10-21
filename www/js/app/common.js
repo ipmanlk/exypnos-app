@@ -12,6 +12,10 @@ document.addEventListener("backbutton", function (e) {
     currentPage = "postList";
     showPostList();
     break;
+    case "CategoryList":
+    currentPage = "postList";
+    showPostList();
+    break;
     case "Category":
     window.location = "index.html";
     break;

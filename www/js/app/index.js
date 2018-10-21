@@ -137,6 +137,7 @@ function sharePost() {
 
 function showPostList() {
   $('#postContent').hide();
+  $('#catContent').hide();
   $('#postList').fadeIn();
   $(window).scrollTop(($(lastPostID).offset().top) - 80);
   // if in category
@@ -148,7 +149,9 @@ function showPostList() {
 function showCats() {
   $('#navBarBtn').click();
   elementsHide(['postContent','postList']);
+  $('#catMsg').hide();
   $('#catContent').fadeIn();
+  currentPage = "CategoryList";
 }
 
 function loadCat(catID,catName) {
