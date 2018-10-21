@@ -132,7 +132,7 @@ function fixElementSizes() {
 }
 
 function sharePost() {
-  window.plugins.socialsharing.share(postTitle + " - Readmore @ ", null, null, "Exypnos Android App.");
+  window.plugins.socialsharing.share(postTitle + " - Readmore @ ", null, null, "Exypnos in Google Play! - https://tinyurl.com/exypnos");
 }
 
 function showPostList() {
