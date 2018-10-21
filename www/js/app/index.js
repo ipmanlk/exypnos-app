@@ -185,6 +185,19 @@ function getCats() {
   });
 }
 
+// offline check
+document.addEventListener("offline", onOffline, false);
+function onOffline() {
+  $('#loader').hide();
+  $('#offlineMsg').fadeIn();
+}
+
+// online check
+document.addEventListener("online", onOnline, false);
+function onOnline() {
+  $('#offlineMsg').fadeOut();
+}
+
 // functions for useful actions
 function elementsHide(elementIDs) {
   for (s in elementIDs) {
