@@ -8,6 +8,9 @@ var lastPostID;
 // browse by category or not
 var catFilter = false;
 
+// control variable for autoload Posts
+var loadMore = true;
+
 // check if device is ready or not
 document.addEventListener("deviceready", onDeviceReady, false);
 
@@ -51,6 +54,11 @@ function getPosts(id,catID) {
         if (catFilter && (id == 0)) {
           $('#noPostMsg').fadeIn();
         }
+        // disable load more
+        loadMore = false;
+      } else {
+        // enable load more
+        loadMore = true;
       }
 
 
@@ -61,6 +69,7 @@ function getPosts(id,catID) {
 
       // apply settings to new posts
       applySettings();
+
     }
   });
 }
@@ -88,6 +97,9 @@ function appendToPosts(html,position) {
 }
 
 function loadMorePosts() {
+  // disable load more until request complete
+  loadMore = false;
+
   $("#loadMorePostsMsg").fadeIn();
 
   // get keys from posts object
@@ -207,3 +219,12 @@ function elementsHide(elementIDs) {
     $(('#' + elementIDs[s])).hide();
   }
 }
+
+// detect scroll
+$(window).scroll(function () {
+   if ($(document).height()-100 <= $(window).scrollTop() + $(window).height()) {
+       if (loadMore) {
+         loadMorePosts();
+       }
+   }
+});
