@@ -21,14 +21,14 @@ body { background: #424141 !important; }
 }
 
 .sinhala {
-  font-family: "Malithi-Web";
+  font-family: "Malithi-Web" !important;
 }
 
 .justify {
   text-align: justify !important;
 }
 
-.navbar-toggler, .dropdown-menu {
+.navbar-toggler, .dropdown-menu, .navbar-toggler.collapsed:hover{
   background-color: #1a1a1a !important;
 }
 
@@ -123,3 +123,4 @@ input:checked + .slider:before {
 .list-group-mine .list-group-item:hover {
   background-color: #636363;
 }
+
