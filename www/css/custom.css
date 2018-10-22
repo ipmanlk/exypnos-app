@@ -21,7 +21,7 @@ body { background: #424141 !important; }
 }
 
 .sinhala {
-  font-family: "Malithi-Web" !important;
+  font-family: "Malithi-Web";
 }
 
 .justify {
@@ -35,6 +35,10 @@ body { background: #424141 !important; }
 /*removes that ugly square around toggler*/
 .navbar-toggler:focus {
   outline: none !important;
+}
+
+.navbar-toggler:hover {
+  background-color: #636363 !important;
 }
 
 .dropdown-item {
