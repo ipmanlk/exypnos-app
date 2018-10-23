@@ -55,6 +55,8 @@ function applySettings() {
 
   if (!settings['settingAutoLoad']) {
     loadMore = "disabled";
+  } else {
+    $('#loadMorePostsBtn').hide();
   }
 }
 
