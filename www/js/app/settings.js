@@ -1,18 +1,18 @@
 // element id's in settings page & their related setting (for checkboxes)
 var elementSetting = {
-  "settingSystemFont":"useCustomFont",
-  "settingNotification":"notification",
-  "settingJustifyText":"justifyText",
-  "settingAutoLoad":"autoLoad"
+  "settingCustomFont":"settingCustomFont",
+  "settingNotification":"settingNotification",
+  "settingJustifyText":"settingJustifyText",
+  "settingAutoLoad":"settingAutoLoad"
 }
 
 // settings with effected selectors & css classes
 var settingInfo = {
-  "useCustomFont":{
+  "settingCustomFont":{
     "selectors":["#postBody",".card-title",".card-text"],
     "classes":["sinhala"]
   },
-  "justifyText":{
+  "settingJustifyText":{
     "selectors":["#postBody",".card-title",".card-text"],
     "classes":["justify"]
   }
@@ -22,16 +22,22 @@ function checkSettings() {
   if (localStorage.getItem('settings') == null) {
     setDefaultSettings();
   } else {
-    applySettings();
+    var settings = JSON.parse(localStorage.getItem('settings'));
+    if (settings['settingAutoLoad'] == null) {
+      // prevent conflicts with previous versions of app
+      setDefaultSettings();
+    } else {
+      applySettings();
+    }
   }
 }
 
 function setDefaultSettings() {
   var settings = {
-    "useCustomFont": true,
-    "notification": false,
-    "justifyText": true,
-    "autoLoad": true
+    "settingCustomFont": true,
+    "settingNotification": false,
+    "settingJustifyText": true,
+    "settingAutoLoad": true
   }
   localStorage.setItem('settings', JSON.stringify(settings));
 }
@@ -39,15 +45,15 @@ function setDefaultSettings() {
 function applySettings() {
   var settings = JSON.parse(localStorage.getItem('settings'));
 
-  if (!settings['useCustomFont']) {
+  if (!settings['settingCustomFont']) {
     classRemover(settingInfo['useCustomFont']);
   }
 
-  if (!settings['justifyText']) {
+  if (!settings['settingJustifyText']) {
     classRemover(settingInfo['justifyText']);
   }
 
-  if (!settings['autoLoad']) {
+  if (!settings['settingAutoLoad']) {
     loadMore = "disabled";
   }
 }
