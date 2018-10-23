@@ -46,11 +46,11 @@ function applySettings() {
   var settings = JSON.parse(localStorage.getItem('settings'));
 
   if (!settings['settingCustomFont']) {
-    classRemover(settingInfo['useCustomFont']);
+    classRemover(settingInfo['settingCustomFont']);
   }
 
   if (!settings['settingJustifyText']) {
-    classRemover(settingInfo['justifyText']);
+    classRemover(settingInfo['settingJustifyText']);
   }
 
   if (!settings['settingAutoLoad']) {
