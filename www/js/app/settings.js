@@ -2,7 +2,8 @@
 var elementSetting = {
   "settingSystemFont":"useCustomFont",
   "settingNotification":"notification",
-  "settingJustifyText":"justifyText"
+  "settingJustifyText":"justifyText",
+  "settingAutoLoad":"autoLoad"
 }
 
 // settings with effected selectors & css classes
@@ -29,7 +30,8 @@ function setDefaultSettings() {
   var settings = {
     "useCustomFont": true,
     "notification": false,
-    "justifyText": true
+    "justifyText": true,
+    "autoLoad": true
   }
   localStorage.setItem('settings', JSON.stringify(settings));
 }
@@ -43,6 +45,10 @@ function applySettings() {
 
   if (!settings['justifyText']) {
     classRemover(settingInfo['justifyText']);
+  }
+
+  if (!settings['autoLoad']) {
+    loadMore = "disabled";
   }
 }
 
