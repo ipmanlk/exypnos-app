@@ -56,7 +56,7 @@ function getPosts(id,catID) {
       } else {
         // enable load more
         loadMore = true;
-        
+
         if (catFilter) {
           $('#catMsg').fadeIn();
         }
@@ -148,6 +148,7 @@ function sharePost() {
 }
 
 function showPostList() {
+  currentPage = "postList";
   $('#postContent, #catContent').hide();
   $('#postList').fadeIn();
   $(window).scrollTop(($(lastPostID).offset().top) - 80);
@@ -216,7 +217,7 @@ function onOnline() {
 // detect scroll
 $(window).scroll(function () {
   if ($(document).height()-100 <= $(window).scrollTop() + $(window).height()) {
-    if (loadMore !== "disabled" && loadMore == true) {
+    if (loadMore !== "disabled" && loadMore == true && currentPage=="postList") {
       loadMorePosts();
     }
   }
