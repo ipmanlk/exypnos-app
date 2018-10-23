@@ -43,7 +43,7 @@ function getPosts(id,catID) {
     success: function (postData) {
       for (post in postData) {
         // load to posts object
-        posts[(parseInt(postData[post].post_id))] = postData[post];
+        posts[(postData[post].post_id)] = postData[post];
         appendToPosts(getCard(postData[post]), "end");
       }
 
@@ -51,16 +51,16 @@ function getPosts(id,catID) {
         // if there are no more post to load
         $('#loadMorePostsBtn').fadeOut();
 
-        if (catFilter && (id == 0)) {
-          $('#noPostMsg').fadeIn();
-        }
         // disable load more
         loadMore = false;
       } else {
         // enable load more
         loadMore = true;
-      }
 
+        if (catFilter) {
+          $('#catMsg').fadeIn();
+        }
+      }
 
       // show posts
       $("#loadMorePostsMsg").hide();
@@ -166,14 +166,14 @@ function showCats() {
 }
 
 function loadCat(catID,catName) {
+  $('#loader').fadeIn();
   loadMore = true;
   posts = {};
   catFilter = true;
   getPosts(0, catID);
-  $('#postContent, #noPostMsg, #catContent').hide();
+  $('#postContent, #catContent').hide();
   $('#catName').text(catName);
   $('#posts').empty();
-  $('#catMsg').fadeIn();
   $('#loadMorePostsBtn').fadeIn();
   currentPage = "Category";
 }
