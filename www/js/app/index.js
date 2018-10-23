@@ -120,7 +120,7 @@ function loadMorePosts() {
 function showPost(id) {
   currentPage = "Post";
   loadPost(id);
-  elementsHide(['postList','catMsg']);
+  $('#postList, #catMsg').hide();
   $('#postContent').fadeIn();
   lastPostID =  "#" + id;
 }
@@ -148,8 +148,7 @@ function sharePost() {
 }
 
 function showPostList() {
-  $('#postContent').hide();
-  $('#catContent').hide();
+  $('#postContent, #catContent').hide();
   $('#postList').fadeIn();
   $(window).scrollTop(($(lastPostID).offset().top) - 80);
   // if in category
@@ -159,21 +158,22 @@ function showPostList() {
 }
 
 function showCats() {
+  loadMore = false;
   $('#navBarBtn').click();
-  elementsHide(['postContent','postList']);
-  $('#catMsg').hide();
+  $('#postContent, #postList, #catMsg').hide();
   $('#catContent').fadeIn();
   currentPage = "CategoryList";
 }
 
 function loadCat(catID,catName) {
+  loadMore = true;
   posts = {};
   catFilter = true;
   getPosts(0, catID);
-  elementsHide(['postContent','noPostMsg','catContent']);
+  $('#postContent, #noPostMsg, #catContent').hide();
+  $('#catName').text(catName);
   $('#posts').empty();
   $('#catMsg').fadeIn();
-  $('#catName').text(catName);
   $('#loadMorePostsBtn').fadeIn();
   currentPage = "Category";
 }
@@ -211,13 +211,6 @@ function onOffline() {
 document.addEventListener("online", onOnline, false);
 function onOnline() {
   $('#offlineMsg').fadeOut();
-}
-
-// functions for useful actions
-function elementsHide(elementIDs) {
-  for (s in elementIDs) {
-    $(('#' + elementIDs[s])).hide();
-  }
 }
 
 // detect scroll
