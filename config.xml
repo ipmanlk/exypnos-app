@@ -27,6 +27,7 @@
         <icon density="xxxhdpi" src="res/icon/android/xxxhdpi.png" />
         <splash src="res/screen/android/splash.png" />
     </platform>
+    <preference name="SplashMaintainAspectRatio" value="true" />
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
