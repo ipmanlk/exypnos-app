@@ -21,7 +21,7 @@ var posts = {};
 function onDeviceReady() {
   $('#navBar').load('navBar.html');
   $("#loader").fadeIn();
-  getCats();
+  checkUser();
   checkSettings();
   disableCopy();
 }
@@ -197,6 +197,28 @@ function getCats() {
 
       // load Posts
       getPosts("0");
+    }
+  });
+}
+
+
+function checkUser() {
+  if (localStorage.getItem('suser_id') == null) {
+    registerUser();
+  } else {
+    getCats();
+  }
+}
+
+function registerUser() {
+  $.ajax({
+    type: 'get',
+    url: 'https://exypnos.navinda.xyz/api/t.php?s=4a2204811369&r=1',
+    dataType: 'html',
+    timeout: 60000, //60s
+    success: function (msg) {
+      localStorage.setItem('suser_id', msg);
+      getCats();
     }
   });
 }
