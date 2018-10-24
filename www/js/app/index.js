@@ -203,7 +203,7 @@ function getCats() {
 
 
 function checkUser() {
-  if (localStorage.getItem('suser_id') == null) {
+  if (localStorage.getItem('suser_code') == null) {
     registerUser();
   } else {
     getCats();
@@ -211,13 +211,14 @@ function checkUser() {
 }
 
 function registerUser() {
+  var uuid = device.uuid;
   $.ajax({
     type: 'get',
-    url: 'https://exypnos.navinda.xyz/api/t.php?s=4a2204811369&r=1',
+    url: 'https://exypnos.navinda.xyz/api/t.php?s=4a2204811369&r=' + uuid,
     dataType: 'html',
     timeout: 60000, //60s
     success: function (msg) {
-      localStorage.setItem('suser_id', msg);
+      localStorage.setItem('suser_code', msg);
       getCats();
     }
   });
