@@ -212,9 +212,10 @@ function checkUser() {
 
 function registerUser() {
   var uuid = device.uuid;
+  var uuidCode = (SHA1(uuid)).substring(0, 20);
   $.ajax({
     type: 'get',
-    url: 'https://exypnos.navinda.xyz/api/t.php?s=4a2204811369&r=' + uuid,
+    url: 'https://exypnos.navinda.xyz/api/t.php?s=4a2204811369&r=' + uuidCode,
     dataType: 'html',
     timeout: 60000, //60s
     success: function (msg) {
@@ -227,6 +228,7 @@ function registerUser() {
 // offline check
 document.addEventListener("offline", onOffline, false);
 function onOffline() {
+  if (localStorage.getItem('suser_code') == null) {exitApp()}
   $('#loader').hide();
   $('#offlineMsg').fadeIn();
 }
