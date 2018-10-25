@@ -101,4 +101,5 @@ function handleSettings(elementID, value) {
   settings[setting] = value;
   localStorage.setItem('settings', JSON.stringify(settings));
   updateSettingsUI();
+  showToast("Settings updated!", "Go back to see your changes.","success", 3000);
 }
