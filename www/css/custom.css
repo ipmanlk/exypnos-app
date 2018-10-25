@@ -6,7 +6,9 @@
   user-select: none;
 }
 
-body { background: #424141 !important; }
+body {
+  background: #424141 !important;
+}
 
 .navbar-header{
   margin-left:5px;
@@ -148,3 +150,23 @@ input:checked + .slider:before {
 .modal-body {
   padding:1em;
 }
+
+/* styles for post card  */
+.card-full-width {
+  max-width: 100%
+}
+
+.badge .badge-dark {
+  border-radius: 3px 3px 0px 0px;
+}
+
+.badge .badge-secondary {
+  border-radius: 0px;
+}
+
+.card-img-top {
+  border-radius:0px 0px;
+}
+
+
+
