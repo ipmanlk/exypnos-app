@@ -11,6 +11,8 @@ var catFilter = false;
 // control variable for autoload Posts
 var loadMore = true;
 
+var isOffline = false;
+
 // check if device is ready or not
 document.addEventListener("deviceready", onDeviceReady, false);
 
@@ -230,14 +232,16 @@ document.addEventListener("offline", onOffline, false);
 function onOffline() {
   if (localStorage.getItem('suser_code') == null) {exitApp()}
   showToast("You are offline!", "Some assets will not load properly","error", 8000);
+  isOffline = true;
 }
 
 // online check
 document.addEventListener("online", onOnline, false);
 function onOnline() {
   showToast("You are back online!", "Hooray!","success", 8000);
-  if (cats[1] == null) {
-    getPosts("0");
+  if ((cats[1] == null) && isOffline) {
+    checkUser();
+    isOffline = false;
   }
 }
 
