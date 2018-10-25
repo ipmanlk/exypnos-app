@@ -21,15 +21,14 @@ var posts = {};
 function onDeviceReady() {
   $('#navBar').load('navBar.html');
   $('#navModal').load('navModal.html');
-  $("#loader").fadeIn();
   checkUser();
   checkSettings();
   disableCopy();
 }
 
 function getPosts(id,catID) {
+  showToast("Loading posts...", "Please be patient!", "info");
   var url;
-
   // check if categories are set
   if (catFilter) {
     url = 'https://exypnos.navinda.xyz/api/s.php?s=4a2204811369&id=' + id + '&cat_id=' + catID;
@@ -64,13 +63,14 @@ function getPosts(id,catID) {
       }
 
       // show posts
-      $("#loadMorePostsMsg").hide();
       $("#postList").fadeIn();
-      $("#loader").hide();
+      hideToast();
 
       // apply settings to new posts
       applySettings();
 
+      // hideToast
+      hideToast();
     }
   });
 }
@@ -100,8 +100,6 @@ function appendToPosts(html,position) {
 function loadMorePosts() {
   // disable load more until request complete
   loadMore = false;
-
-  $("#loadMorePostsMsg").fadeIn();
 
   // get keys from posts object
   var keys = Object.keys(posts);
@@ -168,7 +166,7 @@ function showCats() {
 }
 
 function loadCat(catID,catName) {
-  $('#loader').fadeIn();
+  showToast("Loading posts about " + catName, "Please be patient!", "info");
   loadMore = true;
   posts = {};
   catFilter = true;
@@ -182,6 +180,7 @@ function loadCat(catID,catName) {
 
 // get categories
 function getCats() {
+  showToast("Loading Categories....", "Please be patient!", "info");
   $.ajax({
     type: 'get',
     url: 'https://exypnos.navinda.xyz/api/s.php?s=4a2204811369&sp=0',
@@ -230,14 +229,13 @@ function registerUser() {
 document.addEventListener("offline", onOffline, false);
 function onOffline() {
   if (localStorage.getItem('suser_code') == null) {exitApp()}
-  $('#loader').hide();
-  $('#offlineMsg').fadeIn();
+  showToast("You are offline!", "Some assets will not load properly","error");
 }
 
 // online check
 document.addEventListener("online", onOnline, false);
 function onOnline() {
-  $('#offlineMsg').fadeOut();
+  showToast("You are back online!", "Hooray!","success");
 }
 
 // detect scroll

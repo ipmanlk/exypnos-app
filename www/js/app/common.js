@@ -32,11 +32,32 @@ function exitApp() {
 function disableCopy() {
   //Disable cut copy paste
   $('body').on('cut copy paste', function (e) {
-      e.preventDefault();
+    e.preventDefault();
   });
 
   //Disable mouse right click
   $("body").on("contextmenu",function(e){
-      return false;
+    return false;
   });
+}
+
+// toast functions
+function showToast(title, msg, type) {
+  $.toast({
+    text: msg,
+    heading: title,
+    icon: type, //warning, success, error, info
+    showHideTransition: 'slide',
+    allowToastClose: true,
+    hideAfter: 20000,
+    stack: false,
+    position: 'bottom-center',
+    textAlign: 'left',
+    loader: true,
+    loaderBg: '#FFFFFF'
+  });
+}
+
+function hideToast() {
+  $.toast().reset('all');
 }
