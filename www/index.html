@@ -50,9 +50,13 @@
   </div>
 
   <div id="postContent" class="container" style="display:none;">
-    <button onclick="showPostList();" class="btn btn-warning mt-3"><i class="fa fa-chevron-left"></i> Back</button>
+    <button onclick="showPostList();" class="btn btn-warning mt-3"><i class="fa fa-chevron-left"></i> </button>
 
-    <button onclick="sharePost();" class="btn btn-primary mt-3 float-right"><i class="fa fa-share"></i> Share</button>
+    <div class="float-right">
+      <button onclick="sharePost();" class="btn btn-success mt-3 float-right ml-2"><i class="fa fa-share"></i> </button>
+      <button onclick="sharePost();" class="btn btn-danger mt-3 float-right ml-2"><i class="fa fa-heart"></i></button>
+      <button onclick="sharePost();" class="btn btn-primary mt-3 float-right ml-2"><i class="fa fa-thumbs-up"></i>&nbsp;<span id="postLikes">500</span></button>
+    </div>
 
     <div id="postBody" class="jumbotron mt-3 sinhala justify">
       <h3>
