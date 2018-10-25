@@ -48,7 +48,7 @@ function showToast(title, msg, type, hideTime) {
     heading: title,
     icon: type, //warning, success, error, info
     showHideTransition: 'slide',
-    allowToastClose: true,
+    allowToastClose: false,
     hideAfter: hideTime,
     stack: false,
     position: 'bottom-center',
