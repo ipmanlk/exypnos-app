@@ -27,7 +27,7 @@ function onDeviceReady() {
 }
 
 function getPosts(id,catID) {
-  showToast("Loading posts...", "Please be patient!", "info");
+  showToast("Loading posts...", "Please be patient!", "info", 20000);
   var url;
   // check if categories are set
   if (catFilter) {
@@ -166,7 +166,7 @@ function showCats() {
 }
 
 function loadCat(catID,catName) {
-  showToast("Loading posts about " + catName, "Please be patient!", "info");
+  showToast("Loading posts about " + catName, "Please be patient!", "info", 20000);
   loadMore = true;
   posts = {};
   catFilter = true;
@@ -180,7 +180,7 @@ function loadCat(catID,catName) {
 
 // get categories
 function getCats() {
-  showToast("Loading Categories....", "Please be patient!", "info");
+  showToast("Loading Categories....", "Please be patient!", "info", 20000);
   $.ajax({
     type: 'get',
     url: 'https://exypnos.navinda.xyz/api/s.php?s=4a2204811369&sp=0',
@@ -229,13 +229,13 @@ function registerUser() {
 document.addEventListener("offline", onOffline, false);
 function onOffline() {
   if (localStorage.getItem('suser_code') == null) {exitApp()}
-  showToast("You are offline!", "Some assets will not load properly","error");
+  showToast("You are offline!", "Some assets will not load properly","error", 8000);
 }
 
 // online check
 document.addEventListener("online", onOnline, false);
 function onOnline() {
-  showToast("You are back online!", "Hooray!","success");
+  showToast("You are back online!", "Hooray!","success", 8000);
 }
 
 // detect scroll

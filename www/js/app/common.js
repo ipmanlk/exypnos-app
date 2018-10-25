@@ -42,14 +42,14 @@ function disableCopy() {
 }
 
 // toast functions
-function showToast(title, msg, type) {
+function showToast(title, msg, type, hideTime) {
   $.toast({
     text: msg,
     heading: title,
     icon: type, //warning, success, error, info
     showHideTransition: 'slide',
     allowToastClose: true,
-    hideAfter: 20000,
+    hideAfter: hideTime,
     stack: false,
     position: 'bottom-center',
     textAlign: 'left',
