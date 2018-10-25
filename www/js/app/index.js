@@ -84,7 +84,7 @@ function getCard(post) {
   cat_id = post.cat_id;
   datetime = post.datetime;
   author = post.author;
-  var html = '<div id="' + id + '" class="container mt-4"><div class="card text-white bg-dark mb-3 card-full-width"><span class="badge badge-dark">' + cats[cat_id] + '</span><img class="card-img-top" src="' + coverImg + '" alt="Top Card Img"><span class="badge badge-secondary">' + "By " + author + " @ " + datetime + '</span><div class="card-body"><h5 class="card-title sinhala justify"><strong>' + title + '</strong></h5><p class="card-text sinhala justify">' + shortDes + '</p><a href="#" class="btn btn-primary btn-block" onclick="' + "showPost('" + id + "')"+ '">Read More</a></div></div></div></div>';
+  var html = '<div id="' + id + '" class="container mt-4"><div class="card text-white bg-dark mb-3 card-full-width"><span class="badge badge-dark">' + cats[cat_id] + '</span><img class="card-img-top" src="' + coverImg + '" alt="Top Card Img"><span class="badge badge-secondary">' + "By " + author + " @ " + datetime + '</span><div class="card-body"><h5 id="cardTitle" class="card-title sinhala justify"><strong>' + title + '</strong></h5><p id="cardText" class="card-text sinhala justify">' + shortDes + '</p><a href="#" class="btn btn-primary btn-block" onclick="' + "showPost('" + id + "')"+ '">Read More</a></div></div></div></div>';
   return(html)
 }
 
