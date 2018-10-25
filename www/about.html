@@ -14,7 +14,12 @@
 </head>
 <body oncopy="return false" oncut="return false" onpaste="return false">
   <nav id="navBar" class="navbar navbar-expand-lg navbat navbar-dark bg-dark navbar sticky-top">
+
   </nav>
+
+  <div class="modal fade" id="navModal">
+
+  </div>
 
   <div class="container mt-3">
     <center>
@@ -55,6 +60,7 @@
   <script type="text/javascript">
   $(document).ready(function() {
     $('#navBar').load('navBar.html');
+    $('#navModal').load('navModal.html');
   });
   var currentPage = "About";
   </script>

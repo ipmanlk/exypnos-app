@@ -20,6 +20,7 @@ var posts = {};
 
 function onDeviceReady() {
   $('#navBar').load('navBar.html');
+  $('#navModal').load('navModal.html');
   $("#loader").fadeIn();
   checkUser();
   checkSettings();
