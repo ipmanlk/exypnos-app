@@ -124,12 +124,15 @@ input:checked + .slider:before {
   background-color: #636363;
 }
 
+/* styles for navModal */
 .modal-dialog {
   min-height: calc(100vh - 60px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   overflow: auto;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 @media(max-width: 768px) {
@@ -138,7 +141,10 @@ input:checked + .slider:before {
   }
 }
 
+.modal-content {
+  background: #424141 !important;
+}
+
 .modal-body {
-  background: #424141;
   padding:1em;
 }
