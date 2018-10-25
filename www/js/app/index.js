@@ -236,6 +236,9 @@ function onOffline() {
 document.addEventListener("online", onOnline, false);
 function onOnline() {
   showToast("You are back online!", "Hooray!","success", 8000);
+  if (cats[1] == null) {
+    getPosts("0");
+  }
 }
 
 // detect scroll
