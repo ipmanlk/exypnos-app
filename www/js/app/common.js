@@ -30,15 +30,17 @@ function exitApp() {
 
 // copy paste disable
 function disableCopy() {
-  //Disable cut copy paste
-  $('body').on('cut copy paste', function (e) {
-    e.preventDefault();
-  });
+  if (currentPage !== "Settings") {
+    //Disable cut copy paste
+    $('body').on('cut copy paste', function (e) {
+      e.preventDefault();
+    });
 
-  //Disable mouse right click
-  $("body").on("contextmenu",function(e){
-    return false;
-  });
+    //Disable mouse right click
+    $("body").on("contextmenu",function(e){
+      return false;
+    });
+  }
 }
 
 // toast functions
