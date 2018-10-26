@@ -127,32 +127,52 @@ function showPost(id) {
 
 function loadPost(id) {
   currentPostID = id;
+  if (posts[id] == null) {
+    loadPostOnline(id);
+  } else {
+    setPostContent(id, posts[id]);
+    // check post likes
+    likeGet();
+    // show post
+    $('#postList, #catMsg').hide();
+    $('#postContent').fadeIn();
+    // hide toast
+    hideToast();
+  }
+}
+
+function loadPostOnline(id) {
   $.ajax({
     type: 'get',
     url: "https://exypnos.navinda.xyz/api/v2/t.php?s=4a2204811369&p_get=0&id=" + id,
     dataType: 'json',
     timeout: 60000, //60s
     success: function (data) {
-      $("#title").html(postsList[id].title);
-      $("#datatime").html(postsList[id].datetime);
-      $("#coverimg").attr("src", postsList[id].cover_img);
-      $("#post").html(data.post);
-      $("#cardimg1").attr("src", data.card_img1);
-      $("#cardimg2").attr("src", data.card_img2);
-      $("#author").html(postsList[id].author);
-      $("#authorInfo").html(data.author_info);
-      fixElementSizes();
+      // store post data for later
+      posts[data.post_id] = data;
+      // set element values
+      setPostContent(id, data);
       // check post likes
       likeGet();
-
       // show post
       $('#postList, #catMsg').hide();
       $('#postContent').fadeIn();
-
       // hide toast
       hideToast();
     }
   });
+}
+
+function setPostContent(id, data) {
+  $("#title").html(postsList[id].title);
+  $("#datatime").html(postsList[id].datetime);
+  $("#coverimg").attr("src", postsList[id].cover_img);
+  $("#post").html(data.post);
+  $("#cardimg1").attr("src", data.card_img1);
+  $("#cardimg2").attr("src", data.card_img2);
+  $("#author").html(postsList[id].author);
+  $("#authorInfo").html(data.author_info);
+  fixElementSizes();
 }
 
 function fixElementSizes() {
