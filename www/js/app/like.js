@@ -24,6 +24,8 @@ function likeAdd() {
         showToast("Post Liked!", "Thanks for giving your feedback.","success", 2000);
         $('#postLikeIcon').removeClass("far fa-thumbs-up");
         $('#postLikeIcon').addClass("fas fa-thumbs-up");
+        $('#postLikes').text(parseInt($('#postLikes').text()) + 1);
+        $('#postLikeBtn').prop("disabled",true);
       }
     }
   });
