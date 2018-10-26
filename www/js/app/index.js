@@ -18,6 +18,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 // store categories & posts
 var cats = {};
+var postsList = {};
 var posts = {};
 
 function onDeviceReady() {
@@ -33,9 +34,9 @@ function getPosts(id,catID) {
   var url;
   // check if categories are set
   if (catFilter) {
-    url = 'https://exypnos.navinda.xyz/api/s.php?s=4a2204811369&id=' + id + '&cat_id=' + catID;
+    url = 'https://exypnos.navinda.xyz/api/v2/t.php?s=4a2204811369&p_list=0&id=' + id + '&cat_id=' + catID;
   } else {
-    url = 'https://exypnos.navinda.xyz/api/s.php?s=4a2204811369&id=' + id;
+    url = 'https://exypnos.navinda.xyz/api/v2/t.php?s=4a2204811369&p_list=0&id=' + id;
   }
   $.ajax({
     type: 'get',
@@ -45,7 +46,7 @@ function getPosts(id,catID) {
     success: function (postData) {
       for (post in postData) {
         // load to posts object
-        posts[(postData[post].post_id)] = postData[post];
+        postsList[(postData[post].post_id)] = postData[post];
         appendToPosts(getCard(postData[post]), "end");
       }
 
@@ -66,7 +67,6 @@ function getPosts(id,catID) {
 
       // show posts
       $("#postList").fadeIn();
-      hideToast();
 
       // apply settings to new posts
       applySettings();
@@ -104,14 +104,14 @@ function loadMorePosts() {
   loadMore = false;
 
   // get keys from posts object
-  var keys = Object.keys(posts);
+  var keys = Object.keys(postsList);
 
   // get the post id of last item
   var oldestPostId = keys[0];
 
   // if category filter is enabled
   if (catFilter) {
-    var selectedCat = posts[oldestPostId].cat_id;
+    var selectedCat = postList[oldestPostId].cat_id;
     getPosts(oldestPostId, selectedCat);
   } else {
     getPosts(oldestPostId);
@@ -119,28 +119,40 @@ function loadMorePosts() {
 }
 
 function showPost(id) {
+  showToast("Loading post....", "Please be patient!", "info", 20000);
   currentPage = "Post";
   loadPost(id);
-  $('#postList, #catMsg').hide();
-  $('#postContent').fadeIn();
   lastPostID =  "#" + id;
 }
 
 function loadPost(id) {
   currentPostID = id;
-  var postData = posts[id];
-  $("#title").html(postData.title);
-  postTitle = postData.title;
-  $("#datatime").html(postData.datetime);
-  $("#coverimg").attr("src", postData.cover_img);
-  $("#post").html(postData.post);
-  $("#cardimg1").attr("src", postData.card_img1);
-  $("#cardimg2").attr("src", postData.card_img2);
-  $("#author").html(postData.author);
-  $("#authorInfo").html(postData.author_info);
-  fixElementSizes();
-  // check post likes
-  likeGet();
+  $.ajax({
+    type: 'get',
+    url: "https://exypnos.navinda.xyz/api/v2/t.php?s=4a2204811369&p_get=0&id=" + id,
+    dataType: 'json',
+    timeout: 60000, //60s
+    success: function (data) {
+      $("#title").html(postsList[id].title);
+      $("#datatime").html(postsList[id].datetime);
+      $("#coverimg").attr("src", postsList[id].cover_img);
+      $("#post").html(data.post);
+      $("#cardimg1").attr("src", data.card_img1);
+      $("#cardimg2").attr("src", data.card_img2);
+      $("#author").html(postsList[id].author);
+      $("#authorInfo").html(data.author_info);
+      fixElementSizes();
+      // check post likes
+      likeGet();
+
+      // show post
+      $('#postList, #catMsg').hide();
+      $('#postContent').fadeIn();
+
+      // hide toast
+      hideToast();
+    }
+  });
 }
 
 function fixElementSizes() {
@@ -148,7 +160,7 @@ function fixElementSizes() {
 }
 
 function sharePost() {
-  var postTitle = posts[currentPostID].title;
+  var postTitle = postsList[currentPostID].title;
   window.plugins.socialsharing.share(postTitle + " - Readmore @ ", null, null, "Exypnos in Google Play! - https://tinyurl.com/exypnos");
 }
 
@@ -174,7 +186,7 @@ function showCats() {
 function loadCat(catID,catName) {
   showToast("Loading posts about " + catName, "Please be patient!", "info", 20000);
   loadMore = true;
-  posts = {};
+  postsList = {};
   catFilter = true;
   getPosts(0, catID);
   $('#postContent, #catContent').hide();
@@ -189,7 +201,7 @@ function getCats() {
   showToast("Loading Categories....", "Please be patient!", "info", 20000);
   $.ajax({
     type: 'get',
-    url: 'https://exypnos.navinda.xyz/api/s.php?s=4a2204811369&sp=0',
+    url: 'https://exypnos.navinda.xyz/api/v2/t.php?s=4a2204811369&c_list=0',
     dataType: 'json',
     timeout: 60000, //60s
     success: function (catsData) {
@@ -221,7 +233,7 @@ function registerUser() {
   var uuidCode = (SHA1(uuid)).substring(0, 20);
   $.ajax({
     type: 'get',
-    url: 'https://exypnos.navinda.xyz/api/t.php?s=4a2204811369&r=' + uuidCode,
+    url: 'https://exypnos.navinda.xyz/api/v2/t.php?s=4a2204811369&r=' + uuidCode,
     dataType: 'html',
     timeout: 60000, //60s
     success: function (msg) {
