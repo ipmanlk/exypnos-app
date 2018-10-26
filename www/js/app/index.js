@@ -1,7 +1,7 @@
 // define where are you
 var currentPage = "postList";
-// global post title for sharing
-var postTitle;
+// global post id for sharing, like, fav
+var currentPostID;
 // remember last post id to scroll back
 var lastPostID;
 
@@ -145,6 +145,7 @@ function fixElementSizes() {
 }
 
 function sharePost() {
+  var postTitle = posts[currentPostID].title;
   window.plugins.socialsharing.share(postTitle + " - Readmore @ ", null, null, "Exypnos in Google Play! - https://tinyurl.com/exypnos");
 }
 
