@@ -127,6 +127,7 @@ function showPost(id) {
 }
 
 function loadPost(id) {
+  currentPostID = id;
   var postData = posts[id];
   $("#title").html(postData.title);
   postTitle = postData.title;
@@ -138,6 +139,8 @@ function loadPost(id) {
   $("#author").html(postData.author);
   $("#authorInfo").html(postData.author_info);
   fixElementSizes();
+  // check post likes
+  likeGet();
 }
 
 function fixElementSizes() {
