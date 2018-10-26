@@ -21,7 +21,7 @@ function likeAdd() {
     timeout: 60000, //60s
     success: function (data) {
       if (data == "1") {
-        showToast("Post Liked!", "Thanks for giving your feedback.","success", 5000);
+        showToast("Post Liked!", "Thanks for giving your feedback.","success", 2000);
         $('#postLikeIcon').removeClass("far fa-thumbs-up");
         $('#postLikeIcon').addClass("fas fa-thumbs-up");
       }
@@ -40,6 +40,9 @@ function likeCheck() {
       if (data == "1") {
         $('#postLikeIcon').removeClass("far fa-thumbs-up");
         $('#postLikeIcon').addClass("fas fa-thumbs-up");
+        $('#postLikeBtn').prop("disabled",true);
+      } else {
+        $('#postLikeBtn').prop("disabled",false);
       }
     }
   });
