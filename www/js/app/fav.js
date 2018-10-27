@@ -48,5 +48,8 @@ function favCheck() {
   if (favs[currentPostID].post_id !== null) {
     $('#postFavIcon').removeClass('far fa-star');
     $('#postFavIcon').addClass('fas fa-star');
+  } else {
+    $('#postFavIcon').removeClass('fas fa-star');
+    $('#postFavIcon').addClass('far fa-star');
   }
 }
