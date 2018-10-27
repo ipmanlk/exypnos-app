@@ -1,3 +1,5 @@
+var postLiked = false;
+
 function likeGet() {
   // get how much likes current post has
   $.ajax({
@@ -14,21 +16,24 @@ function likeGet() {
 
 function likeAdd() {
   var suser_code = localStorage.getItem('suser_code');
-  $.ajax({
-    type: 'get',
-    url: "https://exypnos.navinda.xyz/api/v2/t.php?s=4a2204811369&lke_a=0&suser_code=" + suser_code + "&post_id=" + currentPostID,
-    dataType: 'html',
-    timeout: 60000, //60s
-    success: function (data) {
-      if (data == "1") {
-        showToast("Post Liked!", "Thanks for giving your feedback.","success", 2000);
-        $('#postLikeIcon').removeClass("far fa-thumbs-up");
-        $('#postLikeIcon').addClass("fas fa-thumbs-up");
-        $('#postLikes').text(parseInt($('#postLikes').text()) + 1);
-        $('#postLikeBtn').prop("disabled",true);
+
+  if (!postLiked) {
+    $.ajax({
+      type: 'get',
+      url: "https://exypnos.navinda.xyz/api/v2/t.php?s=4a2204811369&lke_a=0&suser_code=" + suser_code + "&post_id=" + currentPostID,
+      dataType: 'html',
+      timeout: 60000, //60s
+      success: function (data) {
+        if (data == "1") {
+          showToast("Post Liked!", "Thanks for giving your feedback.","success", 2000);
+          $('#postLikeIcon').removeClass("far fa-thumbs-up");
+          $('#postLikeIcon').addClass("fas fa-thumbs-up");
+          $('#postLikes').text(parseInt($('#postLikes').text()) + 1);
+        }
       }
-    }
-  });
+    });
+  }
+  $('#postLikeBtn').blur();
 }
 
 function likeCheck() {
@@ -42,11 +47,11 @@ function likeCheck() {
       if (data == "1") {
         $('#postLikeIcon').removeClass("far fa-thumbs-up");
         $('#postLikeIcon').addClass("fas fa-thumbs-up");
-        $('#postLikeBtn').prop("disabled",true);
+        postLiked = true;
         // check if in favs
         favCheck();
       } else {
-        $('#postLikeBtn').prop("disabled",false);
+        postLiked = false;
       }
     }
   });
