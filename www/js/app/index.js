@@ -125,6 +125,7 @@ function showPost(id) {
 }
 
 function loadPost(id) {
+  $('#postList, #catMsg').hide();
   currentPostID = id;
   if (posts[id] == null) {
     loadPostOnline(id);
@@ -154,7 +155,6 @@ function loadPostOnline(id) {
       // check post likes
       likeGet();
       // show post
-      $('#postList, #catMsg').hide();
       $('#postContent').fadeIn();
       // hide toast
       hideToast();
