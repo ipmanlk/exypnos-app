@@ -20,7 +20,9 @@ document.addEventListener("backbutton", function (e) {
     window.location = "index.html";
     break;
     default:
-    exitApp();
+    if (confirm("Do you really want to exit?")) {
+      exitApp();
+    }
   }
 }, false);
 
