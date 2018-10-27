@@ -257,7 +257,10 @@ function checkUser() {
 // offline check
 document.addEventListener("offline", onOffline, false);
 function onOffline() {
-  if (localStorage.getItem('suser_code') == null) {exitApp()}
+  if ((localStorage.getItem('suser_code') == null) && (cats[1] !== null)) {
+    alert("You are offline!. Please connect to the internet!");
+    exitApp();
+  }
   showToast("You are offline!", "Some assets will not load properly","error", 8000);
   isOffline = true;
 }
@@ -265,9 +268,8 @@ function onOffline() {
 // online check
 document.addEventListener("online", onOnline, false);
 function onOnline() {
-  showToast("You are back online!", "Hooray!","success", 8000);
-  if ((cats[1] == null) && isOffline) {
-    checkUser();
+  if ((cats[1] !== null) && isOffline) {
+    showToast("You are back online!", "Hooray!","success", 8000);
     isOffline = false;
   }
 }
