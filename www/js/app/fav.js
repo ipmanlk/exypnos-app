@@ -23,8 +23,11 @@ function favAdd() {
 
   localStorage.setItem('favs', JSON.stringify(favs));
 
+  $("#navFav").show();
+
   if ((Object.keys(favs)).length < 1) {
     localStorage.removeItem("favs");
+    $("#navFav").hide();
   }
 }
 
