@@ -43,6 +43,8 @@ function likeCheck() {
         $('#postLikeIcon').removeClass("far fa-thumbs-up");
         $('#postLikeIcon').addClass("fas fa-thumbs-up");
         $('#postLikeBtn').prop("disabled",true);
+        // check if in favs
+        favCheck();
       } else {
         $('#postLikeBtn').prop("disabled",false);
       }

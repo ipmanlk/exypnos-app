@@ -127,6 +127,7 @@ function showPost(id) {
 
 function loadPost(id) {
   currentPostID = id;
+  $('#postFavBtn').prop("disabled",true);
   if (posts[id] == null) {
     loadPostOnline(id);
   } else {
