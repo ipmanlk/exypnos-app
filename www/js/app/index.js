@@ -110,9 +110,8 @@ function loadMorePosts() {
   var oldestPostId = keys[0];
 
   // if category filter is enabled
-  if (catFilter) {
-    var selectedCat = postList[oldestPostId].cat_id;
-    getPosts(oldestPostId, selectedCat);
+  if (catFilter !== false) {
+    getPosts(oldestPostId, catFilter);
   } else {
     getPosts(oldestPostId);
   }
@@ -207,7 +206,7 @@ function loadCat(catID,catName) {
   showToast("Loading posts about " + catName, "Please be patient!", "info", 20000);
   loadMore = true;
   postsList = {};
-  catFilter = true;
+  catFilter = catID;
   getPosts(0, catID);
   $('#postContent, #catContent').hide();
   $('#catName').text(catName);
