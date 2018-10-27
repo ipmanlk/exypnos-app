@@ -240,14 +240,6 @@ function getCats() {
 
 
 function checkUser() {
-  if (localStorage.getItem('suser_code') == null) {
-    registerUser();
-  } else {
-    getCats();
-  }
-}
-
-function registerUser() {
   var uuid = device.uuid;
   var uuidCode = (SHA1(uuid)).substring(0, 20);
   $.ajax({
