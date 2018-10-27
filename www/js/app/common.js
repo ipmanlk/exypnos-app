@@ -10,6 +10,10 @@ document.addEventListener("backbutton", function (e) {
     break;
     case "Post":
     currentPage = "postList";
+    var favs = JSON.parse(localStorage.getItem('favs'));
+    if (currentPostID in favs) {
+      currentPage = "FavList";
+    }
     showPostList();
     break;
     case "CategoryList":
@@ -17,6 +21,9 @@ document.addEventListener("backbutton", function (e) {
     showPostList();
     break;
     case "Category":
+    window.location = "index.html";
+    break;
+    case "FavList":
     window.location = "index.html";
     break;
     default:

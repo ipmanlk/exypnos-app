@@ -37,8 +37,8 @@ function showFavs() {
   $('#navBarBtn').click();
   $('#loadMorePostsBtn').hide();
   $('#favMsg').fadeIn();
-  
-  currentPage = "postList";
+
+  currentPage = "FavList";
   $('#postContent, #catContent').hide();
   $('#postList').fadeIn();
 }

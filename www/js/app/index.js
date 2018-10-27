@@ -191,7 +191,6 @@ function sharePost() {
 }
 
 function showPostList() {
-  currentPage = "postList";
   $('#postContent, #catContent').hide();
   $('#postList').fadeIn();
   $(window).scrollTop(($(lastPostID).offset().top) - 80);
