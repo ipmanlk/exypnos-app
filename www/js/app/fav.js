@@ -22,6 +22,10 @@ function favAdd() {
   $('#postFavBtn').blur();
 
   localStorage.setItem('favs', JSON.stringify(favs));
+
+  if ((Object.keys(favs)).length < 1) {
+    localStorage.removeItem("favs");
+  }
 }
 
 function showFavs() {

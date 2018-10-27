@@ -73,6 +73,11 @@ function getPosts(id,catID) {
 
       // hideToast
       hideToast();
+
+      // check fav exisit
+      if (localStorage.getItem("favs") == null) {
+        $("#navFav").hide();
+      }
     }
   });
 }
