@@ -48,11 +48,11 @@ function likeCheck() {
         $('#postLikeIcon').removeClass("far fa-thumbs-up");
         $('#postLikeIcon').addClass("fas fa-thumbs-up");
         postLiked = true;
-        // check if in favs
-        favCheck();
       } else {
         postLiked = false;
       }
+      // check if in favs
+      favCheck();
     }
   });
 }

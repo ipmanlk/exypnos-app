@@ -45,7 +45,7 @@ function favCheck() {
     favs = JSON.parse(localStorage.getItem('favs'));
   }
 
-  if (favs[currentPostID].post_id !== null) {
+  if (currentPostID in favs) {
     $('#postFavIcon').removeClass('far fa-star');
     $('#postFavIcon').addClass('fas fa-star');
   } else {
