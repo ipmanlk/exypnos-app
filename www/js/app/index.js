@@ -163,13 +163,20 @@ function loadPostOnline(id) {
 }
 
 function setPostContent(id, data) {
-  $("#title").html(postsList[id].title);
-  $("#datatime").html(postsList[id].datetime);
-  $("#coverimg").attr("src", postsList[id].cover_img);
+  var postsListData;
+  if (id in postsList) {
+    postsListData = postsList[id];
+  } else {
+    postsListData = (JSON.parse(localStorage.getItem('favs')))[id];
+  }
+  $("#title").html(postsListData.title);
+  $("#datatime").html(postsListData.datetime);
+  $("#coverimg").attr("src", postsListData.cover_img);
+  $("#author").html(postsListData.author);
+
   $("#post").html(data.post);
   $("#cardimg1").attr("src", data.card_img1);
   $("#cardimg2").attr("src", data.card_img2);
-  $("#author").html(postsList[id].author);
   $("#authorInfo").html(data.author_info);
   fixElementSizes();
 }
