@@ -25,6 +25,8 @@ function favAdd() {
 }
 
 function showFavs() {
+  showPostList();
+
   var favs = JSON.parse(localStorage.getItem('favs'));
   $("#posts").empty();
 
@@ -35,6 +37,8 @@ function showFavs() {
   loadMore = false;
 
   $('#navBarBtn').click();
+  $('#loadMorePostsBtn').hide();
+  $('#favMsg').fadeIn();
 }
 
 function favCheck() {

@@ -198,7 +198,7 @@ function showPostList() {
 function showCats() {
   loadMore = false;
   $('#navBarBtn').click();
-  $('#postContent, #postList, #catMsg').hide();
+  $('#postContent, #postList, #catMsg, #favMsg').hide();
   $('#catContent').fadeIn();
   currentPage = "CategoryList";
 }
