@@ -11,11 +11,12 @@ function favAdd() {
     favs[currentPostID] = postsList[currentPostID];
     $('#postFavIcon').removeClass('far fa-star');
     $('#postFavIcon').addClass('fas fa-star');
-    alert("I add");
+    showToast("Favorite saved!", "This post can be found in your favorites.","success", 2000);
   } else {
     delete favs[currentPostID];
     $('#postFavIcon').removeClass('fas fa-star');
     $('#postFavIcon').addClass('far fa-star');
+    showToast("Favorite removed!", "This post can no longer be found in your favorites.","success", 2000);
   }
 
   $('#postFavBtn').blur();
@@ -48,6 +49,4 @@ function favCheck() {
     $('#postFavIcon').removeClass('far fa-star');
     $('#postFavIcon').addClass('fas fa-star');
   }
-
-  $('#postFavBtn').prop("disabled",false);
 }
