@@ -160,8 +160,8 @@ input:checked + .slider:before {
   border-radius: 3px 3px 0px 0px;
 }
 
-.badge .badge-secondary {
-  border-radius: 0px;
+.badge {
+  border-radius: 0px !important;
 }
 
 .card-img-top {
