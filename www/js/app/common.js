@@ -1,3 +1,6 @@
+// define current version
+var currentVersion = "v2.0.0-beta";
+
 // override back button
 document.addEventListener("backbutton", function (e) {
   e.preventDefault();

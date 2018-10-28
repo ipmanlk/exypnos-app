@@ -23,7 +23,7 @@
 
   <div class="container mt-3">
     <center>
-      <h3 class="text-white"> Exypnos v1.7.0-beta
+      <h3 class="text-white"> Exypnos <span id="versionLabel"> </span>
       </h3>
     </center>
     <center>
@@ -57,14 +57,17 @@
       <a href="https://www.prabhash.space/">www.prabhash.space</a>
     </center>
   </div>
+  <script src="./js/app/common.js" charset="utf-8"></script>
+  <script src="./js/app/custom.js" charset="utf-8"></script>
   <script type="text/javascript">
   $(document).ready(function() {
     $('#navBar').load('navBar.html');
     $('#navModal').load('navModal.html');
   });
   var currentPage = "About";
+
+  // update version label
+  $('#versionLabel').text(currentVersion);
   </script>
-  <script src="./js/app/common.js" charset="utf-8"></script>
-  <script src="./js/app/custom.js" charset="utf-8"></script>
 </body>
 </html>
