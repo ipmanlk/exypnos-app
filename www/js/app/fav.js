@@ -37,6 +37,7 @@ function showFavs() {
 
   for (post in favs) {
     appendToPosts(getCard(favs[post]));
+    applySettings();
   }
 
   loadMore = false;

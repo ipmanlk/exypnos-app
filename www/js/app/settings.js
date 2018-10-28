@@ -9,11 +9,11 @@ var elementSetting = {
 // settings with effected selectors & css classes
 var settingInfo = {
   "settingCustomFont":{
-    "selectors":["#postBody","#cardTitle","#cardText"],
+    "selectors":["*"],
     "classes":["sinhala"]
   },
   "settingJustifyText":{
-    "selectors":["#postBody","#cardTitle","#cardText"],
+    "selectors":["*"],
     "classes":["justify"]
   }
 }
