@@ -10,9 +10,11 @@ document.addEventListener("backbutton", function (e) {
     break;
     case "Post":
     currentPage = "postList";
-    var favs = JSON.parse(localStorage.getItem('favs'));
-    if (currentPostID in favs) {
-      currentPage = "FavList";
+    if (localStorage.getItem('favs') !== null) {
+      var favs = JSON.parse(localStorage.getItem('favs'));
+      if (currentPostID in favs) {
+        currentPage = "FavList";
+      }
     }
     showPostList();
     break;

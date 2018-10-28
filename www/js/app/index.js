@@ -203,6 +203,14 @@ function showPostList() {
   if (catFilter) {
     $('#catMsg').fadeIn();
   }
+
+  currentPage = "postList";
+  if (localStorage.getItem('favs') !== null) {
+    var favs = JSON.parse(localStorage.getItem('favs'));
+    if (currentPostID in favs) {
+      currentPage = "FavList";
+    }
+  }
 }
 
 function showCats() {
