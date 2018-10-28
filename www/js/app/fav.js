@@ -4,7 +4,6 @@ function favAdd() {
   if (favs[currentPostID] == null) {
     sendFavRequest("favAdd");
   } else {
-    alert("ff");
     sendFavRequest("favDel");
   }
 
@@ -95,15 +94,14 @@ function handleFavOutput(type) {
   // hide of show nav on menu modal
   $("#navFav").show();
 
+  // save changes
+  localStorage.setItem('favs', JSON.stringify(favs));
+
+  // remove favs if there are none
   if ((Object.keys(favs)).length < 1) {
     localStorage.removeItem("favs");
     $("#navFav").hide();
-  } else {
-    // save changes
-    localStorage.setItem('favs', JSON.stringfy(favs));
   }
-  alert('Fav');
-
 }
 
 function getFavs() {
