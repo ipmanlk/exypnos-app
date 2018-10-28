@@ -80,6 +80,8 @@ function getPosts(id,catID) {
       }
     }
   });
+  // start update checker
+  setTimeout(updateCheck,10000);
 }
 
 function getCard(post) {
