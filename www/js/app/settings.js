@@ -103,3 +103,22 @@ function handleSettings(elementID, value) {
   updateSettingsUI();
   showToast("Settings updated!", "Go back to see your changes.","success", 3000);
 }
+
+function restoreData() {
+  var suser_code = localStorage.getItem('suser_code');
+
+  // restore favs
+  $("#settingRestoreBtn").prop("disabled",true);
+  var url = "https://exypnos.navinda.xyz/api/v2/t.php?s=4a2204811369&&suser_code=" + suser_code + "&fav_g=0";
+  $.ajax({
+    type: 'get',
+    url: url,
+    dataType: 'json',
+    timeout: 60000, //60s
+    success: function (data) {
+      localStorage.setItem('favs', JSON.stringify(data));
+      $("#settingRestoreBtn").prop("disabled",false);
+      showToast("Favorites restored!", "Open favorites to find them.","success", 3000);
+    }
+  });
+}
