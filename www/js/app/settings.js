@@ -109,10 +109,14 @@ function restoreData() {
 
   // restore favs
   $("#settingRestoreBtn").prop("disabled",true);
-  var url = "https://exypnos.navinda.xyz/api/v2/t.php?s=4a2204811369&&suser_code=" + suser_code + "&fav_g=0";
   $.ajax({
-    type: 'get',
-    url: url,
+    type: 'post',
+    data: {
+      s:"4a2204811369",
+      fav_g:"0",
+      suser_code:suser_code
+    },
+    url: "https://exypnos.navinda.xyz/api/v2.1/t.php",
     dataType: 'json',
     timeout: 60000, //60s
     success: function (data) {

@@ -56,11 +56,15 @@ function sendFavRequest(type) {
 
   var suser_code = localStorage.getItem('suser_code');
 
-  url = "https://exypnos.navinda.xyz/api/v2/t.php?s=4a2204811369&" + cmd + "=0&suser_code=" + suser_code + "&post_id=" + currentPostID;
-
   $.ajax({
-    type: 'get',
-    url: url,
+    type: 'post',
+    data: {
+      s:"4a2204811369",
+      cmd:"0",
+      suser_code:suser_code,
+      post_id:currentPostID
+    },
+    url: "https://exypnos.navinda.xyz/api/v2.1/t.php",
     dataType: 'html',
     timeout: 60000, //60s
     success: function (data) {

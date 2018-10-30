@@ -31,16 +31,26 @@ function onDeviceReady() {
 
 function getPosts(id,catID) {
   showToast("Loading posts...", "Please be patient!", "info", 20000);
-  var url;
+  var data;
   // check if categories are set
   if (catFilter) {
-    url = 'https://exypnos.navinda.xyz/api/v2/t.php?s=4a2204811369&p_list=0&id=' + id + '&cat_id=' + catID;
+    data = {
+      s:"4a2204811369",
+      p_list:"0",
+      id:id,
+      cat_id:catID
+    }
   } else {
-    url = 'https://exypnos.navinda.xyz/api/v2/t.php?s=4a2204811369&p_list=0&id=' + id;
+    data = {
+      s:"4a2204811369",
+      p_list:"0",
+      id:id
+    }
   }
   $.ajax({
-    type: 'get',
-    url: url,
+    type: 'post',
+    data: data,
+    url: "https://exypnos.navinda.xyz/api/v2.1/t.php",
     dataType: 'json',
     timeout: 60000, //60s
     success: function (postData) {
@@ -148,8 +158,13 @@ function loadPost(id) {
 
 function loadPostOnline(id) {
   $.ajax({
-    type: 'get',
-    url: "https://exypnos.navinda.xyz/api/v2/t.php?s=4a2204811369&p_get=0&id=" + id,
+    type: 'post',
+    data: {
+      s:"4a2204811369",
+      p_get:"0",
+      id:id
+    },
+    url: "https://exypnos.navinda.xyz/api/v2.1/t.php",
     dataType: 'json',
     timeout: 60000, //60s
     success: function (data) {
@@ -238,8 +253,12 @@ function loadCat(catID,catName) {
 function getCats() {
   showToast("Loading Categories....", "Please be patient!", "info", 20000);
   $.ajax({
-    type: 'get',
-    url: 'https://exypnos.navinda.xyz/api/v2/t.php?s=4a2204811369&c_list=0',
+    type: 'post',
+    data: {
+      s:"4a2204811369",
+      c_list:"0"
+    },
+    url: 'https://exypnos.navinda.xyz/api/v2.1/t.php',
     dataType: 'json',
     timeout: 60000, //60s
     success: function (catsData) {
@@ -262,8 +281,12 @@ function checkUser() {
   var uuid = device.uuid;
   var uuidCode = (SHA1(uuid)).substring(0, 20);
   $.ajax({
-    type: 'get',
-    url: 'https://exypnos.navinda.xyz/api/v2/t.php?s=4a2204811369&r=' + uuidCode,
+    type: 'post',
+    data: {
+      s:"4a2204811369",
+      r:uuidCode
+    },
+    url: 'https://exypnos.navinda.xyz/api/v2.1/t.php',
     dataType: 'html',
     timeout: 60000, //60s
     success: function (msg) {
