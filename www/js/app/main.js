@@ -33,14 +33,14 @@ function getPosts(id,catID) {
     data = {
       s:"4a2204811369",
       p_list:"0",
-      id:id,
+      post_id:id,
       cat_id:catID
     }
   } else {
     data = {
       s:"4a2204811369",
       p_list:"0",
-      id:id
+      post_id:id
     }
   }
   $.ajax({
@@ -160,7 +160,7 @@ function loadPostOnline(id) {
     data: {
       s:"4a2204811369",
       p_get:"0",
-      id:id
+      post_id:id
     },
     url: "https://exypnos.navinda.xyz/api/v2.1/t.php",
     dataType: 'json',
