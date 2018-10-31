@@ -60,7 +60,7 @@ function sendFavRequest(type) {
     type: 'post',
     data: {
       s:"4a2204811369",
-      cmd:"0",
+      cmd:cmd,
       suser_code:suser_code,
       post_id:currentPostID
     },
