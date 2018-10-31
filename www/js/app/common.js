@@ -1,6 +1,9 @@
 // define current version
 var currentVersion = "v2.0.0-beta";
 
+// check if device is ready or not
+document.addEventListener("deviceready", onDeviceReady, false);
+
 // override back button
 document.addEventListener("backbutton", function (e) {
   e.preventDefault();
@@ -76,4 +79,17 @@ function showToast(title, msg, type, hideTime) {
 
 function hideToast() {
   $.toast().reset('all');
+}
+
+// hide unwanted buttons on settings & about pages
+function hideUselessBtns() {
+  $("#navCat").attr("class","hide");
+  $("#navFav").attr("class","hide");
+  disableCopy();
+}
+
+// load navbar using ajax
+function loadNavBar() {
+  $('#navBar').load('navBar.html');
+  $('#navModal').load('navModal.html');
 }

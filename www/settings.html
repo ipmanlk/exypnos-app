@@ -123,11 +123,15 @@
   </div>
 
   <script type="text/javascript">
-  $(document).ready(function() {
-    $('#navBar').load('navBar.html');
-    $('#navModal').load('navModal.html');
-    updateSettingsUI();
+  var currentPage = "Settings";
 
+  function onDeviceReady() {
+    // load navBar
+    loadNavBar();
+    // update ui according to selected settings
+    updateSettingsUI();
+    // hide buttons not relevent from nav navModal
+    hideUselessBtns();
     // event listener for checkboxes
     $('input[type="checkbox"]').change(function() {
       onChangeHandler(this);
@@ -135,12 +139,9 @@
 
     // show user code
     $('#suser_code').val(localStorage.getItem('suser_code'));
-  });
-
-  var currentPage = "Settings";
+  }
   </script>
   <script src="./js/app/common.js" charset="utf-8"></script>
-  <script src="./js/app/custom.js" charset="utf-8"></script>
   <script src="./js/app/settings.js" charset="utf-8"></script>
 </body>
 </html>

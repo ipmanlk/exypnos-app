@@ -13,17 +13,13 @@ var loadMore = true;
 
 var isOffline = false;
 
-// check if device is ready or not
-document.addEventListener("deviceready", onDeviceReady, false);
-
 // store categories & posts
 var cats = {};
 var postsList = {};
 var posts = {};
 
 function onDeviceReady() {
-  $('#navBar').load('navBar.html');
-  $('#navModal').load('navModal.html');
+  loadNavBar();
   checkUser();
   checkSettings();
   disableCopy();
