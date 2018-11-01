@@ -21,8 +21,6 @@ var posts = {};
 function onDeviceReady() {
   loadNavBar();
   checkUser();
-  checkSettings();
-  disableCopy();
 }
 
 function getPosts(id,catID) {
@@ -73,6 +71,10 @@ function getPosts(id,catID) {
 
       // show posts
       $("#postList").fadeIn();
+
+      checkSettings();
+
+      disableCopy();
 
       // apply settings to new posts
       applySettings();
