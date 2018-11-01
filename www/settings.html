@@ -131,7 +131,7 @@
     // update ui according to selected settings
     updateSettingsUI();
     // hide buttons not relevent from nav navModal
-    hideUselessBtns();
+    setTimeout(hideUselessBtns, 3000);
     // event listener for checkboxes
     $('input[type="checkbox"]').change(function() {
       onChangeHandler(this);
