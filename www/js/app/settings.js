@@ -113,7 +113,7 @@ function restoreData() {
     type: 'post',
     data: {
       s:"4a2204811369",
-      fav_g:"0",
+      cmd:"fav_g",
       suser_code:suser_code
     },
     url: "https://exypnos.navinda.xyz/api/v2.1/t.php",
