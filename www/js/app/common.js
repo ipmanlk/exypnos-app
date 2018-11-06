@@ -1,5 +1,5 @@
 // define current version
-var currentVersion = "v2.0.0-beta";
+var currentVersion = "v2.0.3";
 
 // check if device is ready or not
 document.addEventListener("deviceready", onDeviceReady, false);
