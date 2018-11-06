@@ -29,14 +29,14 @@ function getPosts(id,catID) {
   // check if categories are set
   if (catFilter) {
     data = {
-      s:"4a2204811369",
+      s:"f6d9248ac046",
       p_list:"0",
       post_id:id,
       cat_id:catID
     }
   } else {
     data = {
-      s:"4a2204811369",
+      s:"f6d9248ac046",
       p_list:"0",
       post_id:id
     }
@@ -160,7 +160,7 @@ function loadPostOnline(id) {
   $.ajax({
     type: 'post',
     data: {
-      s:"4a2204811369",
+      s:"f6d9248ac046",
       p_get:"0",
       post_id:id
     },
@@ -255,7 +255,7 @@ function getCats() {
   $.ajax({
     type: 'post',
     data: {
-      s:"4a2204811369",
+      s:"f6d9248ac046",
       c_list:"0"
     },
     url: 'https://exypnos.navinda.xyz/api/v2.1/t.php',
@@ -283,7 +283,7 @@ function checkUser() {
   $.ajax({
     type: 'post',
     data: {
-      s:"4a2204811369",
+      s:"f6d9248ac046",
       r:uuidCode
     },
     url: 'https://exypnos.navinda.xyz/api/v2.1/t.php',

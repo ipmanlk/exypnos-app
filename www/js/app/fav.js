@@ -59,7 +59,7 @@ function sendFavRequest(type) {
   $.ajax({
     type: 'post',
     data: {
-      s:"4a2204811369",
+      s:"f6d9248ac046",
       cmd:cmd,
       suser_code:suser_code,
       post_id:currentPostID

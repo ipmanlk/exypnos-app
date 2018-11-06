@@ -5,7 +5,7 @@ function likeGet() {
   $.ajax({
     type: 'post',
     data: {
-      s:"4a2204811369",
+      s:"f6d9248ac046",
       lke_g:"0",
       post_id:currentPostID
     },
@@ -26,7 +26,7 @@ function likeAdd() {
     $.ajax({
       type: 'post',
       data: {
-        s:"4a2204811369",
+        s:"f6d9248ac046",
         lke_a:"0",
         suser_code:suser_code,
         post_id:currentPostID
@@ -52,7 +52,7 @@ function likeCheck() {
   $.ajax({
     type: 'post',
     data: {
-      s:"4a2204811369",
+      s:"f6d9248ac046",
       lke_c:"0",
       suser_code:suser_code,
       post_id:currentPostID

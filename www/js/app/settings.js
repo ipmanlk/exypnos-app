@@ -112,7 +112,7 @@ function restoreData() {
   $.ajax({
     type: 'post',
     data: {
-      s:"4a2204811369",
+      s:"f6d9248ac046",
       cmd:"fav_g",
       suser_code:suser_code
     },
