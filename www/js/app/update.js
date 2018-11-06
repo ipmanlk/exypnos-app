@@ -1,6 +1,6 @@
 function updateCheck() {
   $.ajax({
-    type: 'get',
+    type: 'post',
     url: "https://exypnos.navinda.xyz/api/v2.1/t.php",
     data: {
       s:"f6d9248ac046",
